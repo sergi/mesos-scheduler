@@ -1,7 +1,7 @@
 {
   "name": "simple-scheduler-ts",
   "version": "0.1.0",
-  "description": "Simple Mesos Scheduler for TypeScript",
+  "description": "Simple Mesos Scheduler",
   "repository": {
     "type": "git",
     "url": ""
@@ -18,7 +18,8 @@
     "watch-ts": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "debug": "npm run build && npm run watch-ts",
-    "serve-debug": "nodemon --inspect dist/server.js"
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "compile-proto": "rm proto/messages.* && pbjs --keep-case -t static-module -w commonjs -o proto/messages.js proto/all.proto && pbts -o proto/messages.d.ts proto/messages.js"
   },
   "jest": {
     "globals": {
@@ -38,6 +39,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "debug": "^3.1.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.0",
     "nodemon": "^1.12.1",

@@ -3,6 +3,17 @@ import * as $protobuf from "protobufjs";
 /** Namespace mesos. */
 export namespace mesos {
 
+    /**
+     * Status is used to indicate the state of the scheduler and executor
+     * driver after function calls.
+     */
+    enum Status {
+        DRIVER_NOT_STARTED = 1,
+        DRIVER_RUNNING = 2,
+        DRIVER_ABORTED = 3,
+        DRIVER_STOPPED = 4
+    }
+
     /** Properties of a FrameworkID. */
     interface IFrameworkID {
 
@@ -1300,8 +1311,8 @@ export namespace mesos {
         /** FrameworkInfo id */
         id?: mesos.IFrameworkID;
 
-        /** FrameworkInfo failoverTimeout */
-        failoverTimeout?: number;
+        /** FrameworkInfo failover_timeout */
+        failover_timeout?: number;
 
         /** FrameworkInfo checkpoint */
         checkpoint?: boolean;
@@ -1318,8 +1329,8 @@ export namespace mesos {
         /** FrameworkInfo principal */
         principal?: string;
 
-        /** FrameworkInfo webuiUrl */
-        webuiUrl?: string;
+        /** FrameworkInfo webui_url */
+        webui_url?: string;
 
         /** FrameworkInfo capabilities */
         capabilities?: mesos.FrameworkInfo.ICapability[];
@@ -1346,8 +1357,8 @@ export namespace mesos {
         /** FrameworkInfo id. */
         public id?: (mesos.IFrameworkID|null);
 
-        /** FrameworkInfo failoverTimeout. */
-        public failoverTimeout: number;
+        /** FrameworkInfo failover_timeout. */
+        public failover_timeout: number;
 
         /** FrameworkInfo checkpoint. */
         public checkpoint: boolean;
@@ -1364,8 +1375,8 @@ export namespace mesos {
         /** FrameworkInfo principal. */
         public principal: string;
 
-        /** FrameworkInfo webuiUrl. */
-        public webuiUrl: string;
+        /** FrameworkInfo webui_url. */
+        public webui_url: string;
 
         /** FrameworkInfo capabilities. */
         public capabilities: mesos.FrameworkInfo.ICapability[];
@@ -1563,14 +1574,14 @@ export namespace mesos {
         /** CheckInfo http */
         http?: mesos.CheckInfo.IHttp;
 
-        /** CheckInfo delaySeconds */
-        delaySeconds?: number;
+        /** CheckInfo delay_seconds */
+        delay_seconds?: number;
 
-        /** CheckInfo intervalSeconds */
-        intervalSeconds?: number;
+        /** CheckInfo interval_seconds */
+        interval_seconds?: number;
 
-        /** CheckInfo timeoutSeconds */
-        timeoutSeconds?: number;
+        /** CheckInfo timeout_seconds */
+        timeout_seconds?: number;
     }
 
     /**
@@ -1598,14 +1609,14 @@ export namespace mesos {
         /** CheckInfo http. */
         public http?: (mesos.CheckInfo.IHttp|null);
 
-        /** CheckInfo delaySeconds. */
-        public delaySeconds: number;
+        /** CheckInfo delay_seconds. */
+        public delay_seconds: number;
 
-        /** CheckInfo intervalSeconds. */
-        public intervalSeconds: number;
+        /** CheckInfo interval_seconds. */
+        public interval_seconds: number;
 
-        /** CheckInfo timeoutSeconds. */
-        public timeoutSeconds: number;
+        /** CheckInfo timeout_seconds. */
+        public timeout_seconds: number;
 
         /**
          * Creates a new CheckInfo instance using the specified properties.
@@ -1877,20 +1888,20 @@ export namespace mesos {
     /** Properties of a HealthCheck. */
     interface IHealthCheck {
 
-        /** HealthCheck delaySeconds */
-        delaySeconds?: number;
+        /** HealthCheck delay_seconds */
+        delay_seconds?: number;
 
-        /** HealthCheck intervalSeconds */
-        intervalSeconds?: number;
+        /** HealthCheck interval_seconds */
+        interval_seconds?: number;
 
-        /** HealthCheck timeoutSeconds */
-        timeoutSeconds?: number;
+        /** HealthCheck timeout_seconds */
+        timeout_seconds?: number;
 
-        /** HealthCheck consecutiveFailures */
-        consecutiveFailures?: number;
+        /** HealthCheck consecutive_failures */
+        consecutive_failures?: number;
 
-        /** HealthCheck gracePeriodSeconds */
-        gracePeriodSeconds?: number;
+        /** HealthCheck grace_period_seconds */
+        grace_period_seconds?: number;
 
         /** HealthCheck type */
         type?: mesos.HealthCheck.Type;
@@ -1918,20 +1929,20 @@ export namespace mesos {
          */
         constructor(properties?: mesos.IHealthCheck);
 
-        /** HealthCheck delaySeconds. */
-        public delaySeconds: number;
+        /** HealthCheck delay_seconds. */
+        public delay_seconds: number;
 
-        /** HealthCheck intervalSeconds. */
-        public intervalSeconds: number;
+        /** HealthCheck interval_seconds. */
+        public interval_seconds: number;
 
-        /** HealthCheck timeoutSeconds. */
-        public timeoutSeconds: number;
+        /** HealthCheck timeout_seconds. */
+        public timeout_seconds: number;
 
-        /** HealthCheck consecutiveFailures. */
-        public consecutiveFailures: number;
+        /** HealthCheck consecutive_failures. */
+        public consecutive_failures: number;
 
-        /** HealthCheck gracePeriodSeconds. */
-        public gracePeriodSeconds: number;
+        /** HealthCheck grace_period_seconds. */
+        public grace_period_seconds: number;
 
         /** HealthCheck type. */
         public type: mesos.HealthCheck.Type;
@@ -2228,8 +2239,8 @@ export namespace mesos {
     /** Properties of a KillPolicy. */
     interface IKillPolicy {
 
-        /** KillPolicy gracePeriod */
-        gracePeriod?: mesos.IDurationInfo;
+        /** KillPolicy grace_period */
+        grace_period?: mesos.IDurationInfo;
     }
 
     /**
@@ -2256,8 +2267,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.IKillPolicy);
 
-        /** KillPolicy gracePeriod. */
-        public gracePeriod?: (mesos.IDurationInfo|null);
+        /** KillPolicy grace_period. */
+        public grace_period?: (mesos.IDurationInfo|null);
 
         /**
          * Creates a new KillPolicy instance using the specified properties.
@@ -2476,8 +2487,8 @@ export namespace mesos {
             /** URI cache */
             cache?: boolean;
 
-            /** URI outputFile */
-            outputFile?: string;
+            /** URI output_file */
+            output_file?: string;
         }
 
         /** Represents a URI. */
@@ -2501,8 +2512,8 @@ export namespace mesos {
             /** URI cache. */
             public cache: boolean;
 
-            /** URI outputFile. */
-            public outputFile: string;
+            /** URI output_file. */
+            public output_file: string;
 
             /**
              * Creates a new URI instance using the specified properties.
@@ -2582,11 +2593,11 @@ export namespace mesos {
         /** ExecutorInfo type */
         type?: mesos.ExecutorInfo.Type;
 
-        /** ExecutorInfo executorId */
-        executorId: mesos.IExecutorID;
+        /** ExecutorInfo executor_id */
+        executor_id: mesos.IExecutorID;
 
-        /** ExecutorInfo frameworkId */
-        frameworkId?: mesos.IFrameworkID;
+        /** ExecutorInfo framework_id */
+        framework_id?: mesos.IFrameworkID;
 
         /** ExecutorInfo command */
         command?: mesos.ICommandInfo;
@@ -2609,8 +2620,8 @@ export namespace mesos {
         /** ExecutorInfo discovery */
         discovery?: mesos.IDiscoveryInfo;
 
-        /** ExecutorInfo shutdownGracePeriod */
-        shutdownGracePeriod?: mesos.IDurationInfo;
+        /** ExecutorInfo shutdown_grace_period */
+        shutdown_grace_period?: mesos.IDurationInfo;
 
         /** ExecutorInfo labels */
         labels?: mesos.ILabels;
@@ -2628,11 +2639,11 @@ export namespace mesos {
         /** ExecutorInfo type. */
         public type: mesos.ExecutorInfo.Type;
 
-        /** ExecutorInfo executorId. */
-        public executorId: mesos.IExecutorID;
+        /** ExecutorInfo executor_id. */
+        public executor_id: mesos.IExecutorID;
 
-        /** ExecutorInfo frameworkId. */
-        public frameworkId?: (mesos.IFrameworkID|null);
+        /** ExecutorInfo framework_id. */
+        public framework_id?: (mesos.IFrameworkID|null);
 
         /** ExecutorInfo command. */
         public command?: (mesos.ICommandInfo|null);
@@ -2655,8 +2666,8 @@ export namespace mesos {
         /** ExecutorInfo discovery. */
         public discovery?: (mesos.IDiscoveryInfo|null);
 
-        /** ExecutorInfo shutdownGracePeriod. */
-        public shutdownGracePeriod?: (mesos.IDurationInfo|null);
+        /** ExecutorInfo shutdown_grace_period. */
+        public shutdown_grace_period?: (mesos.IDurationInfo|null);
 
         /** ExecutorInfo labels. */
         public labels?: (mesos.ILabels|null);
@@ -3821,8 +3832,8 @@ export namespace mesos {
         /** Resource role */
         role?: string;
 
-        /** Resource allocationInfo */
-        allocationInfo?: mesos.Resource.IAllocationInfo;
+        /** Resource allocation_info */
+        allocation_info?: mesos.Resource.IAllocationInfo;
 
         /** Resource reservation */
         reservation?: mesos.Resource.IReservationInfo;
@@ -3876,8 +3887,8 @@ export namespace mesos {
         /** Resource role. */
         public role: string;
 
-        /** Resource allocationInfo. */
-        public allocationInfo?: (mesos.Resource.IAllocationInfo|null);
+        /** Resource allocation_info. */
+        public allocation_info?: (mesos.Resource.IAllocationInfo|null);
 
         /** Resource reservation. */
         public reservation?: (mesos.Resource.IReservationInfo|null);
@@ -5732,17 +5743,17 @@ export namespace mesos {
     /** Properties of a SNMPStatistics. */
     interface ISNMPStatistics {
 
-        /** SNMPStatistics ipStats */
-        ipStats?: mesos.IIpStatistics;
+        /** SNMPStatistics ip_stats */
+        ip_stats?: mesos.IIpStatistics;
 
-        /** SNMPStatistics icmpStats */
-        icmpStats?: mesos.IIcmpStatistics;
+        /** SNMPStatistics icmp_stats */
+        icmp_stats?: mesos.IIcmpStatistics;
 
-        /** SNMPStatistics tcpStats */
-        tcpStats?: mesos.ITcpStatistics;
+        /** SNMPStatistics tcp_stats */
+        tcp_stats?: mesos.ITcpStatistics;
 
-        /** SNMPStatistics udpStats */
-        udpStats?: mesos.IUdpStatistics;
+        /** SNMPStatistics udp_stats */
+        udp_stats?: mesos.IUdpStatistics;
     }
 
     /** Represents a SNMPStatistics. */
@@ -5754,17 +5765,17 @@ export namespace mesos {
          */
         constructor(properties?: mesos.ISNMPStatistics);
 
-        /** SNMPStatistics ipStats. */
-        public ipStats?: (mesos.IIpStatistics|null);
+        /** SNMPStatistics ip_stats. */
+        public ip_stats?: (mesos.IIpStatistics|null);
 
-        /** SNMPStatistics icmpStats. */
-        public icmpStats?: (mesos.IIcmpStatistics|null);
+        /** SNMPStatistics icmp_stats. */
+        public icmp_stats?: (mesos.IIcmpStatistics|null);
 
-        /** SNMPStatistics tcpStats. */
-        public tcpStats?: (mesos.ITcpStatistics|null);
+        /** SNMPStatistics tcp_stats. */
+        public tcp_stats?: (mesos.ITcpStatistics|null);
 
-        /** SNMPStatistics udpStats. */
-        public udpStats?: (mesos.IUdpStatistics|null);
+        /** SNMPStatistics udp_stats. */
+        public udp_stats?: (mesos.IUdpStatistics|null);
 
         /**
          * Creates a new SNMPStatistics instance using the specified properties.
@@ -5849,122 +5860,122 @@ export namespace mesos {
         /** ResourceStatistics threads */
         threads?: number;
 
-        /** ResourceStatistics cpusUserTimeSecs */
-        cpusUserTimeSecs?: number;
+        /** ResourceStatistics cpus_user_time_secs */
+        cpus_user_time_secs?: number;
 
-        /** ResourceStatistics cpusSystemTimeSecs */
-        cpusSystemTimeSecs?: number;
+        /** ResourceStatistics cpus_system_time_secs */
+        cpus_system_time_secs?: number;
 
-        /** ResourceStatistics cpusLimit */
-        cpusLimit?: number;
+        /** ResourceStatistics cpus_limit */
+        cpus_limit?: number;
 
-        /** ResourceStatistics cpusNrPeriods */
-        cpusNrPeriods?: number;
+        /** ResourceStatistics cpus_nr_periods */
+        cpus_nr_periods?: number;
 
-        /** ResourceStatistics cpusNrThrottled */
-        cpusNrThrottled?: number;
+        /** ResourceStatistics cpus_nr_throttled */
+        cpus_nr_throttled?: number;
 
-        /** ResourceStatistics cpusThrottledTimeSecs */
-        cpusThrottledTimeSecs?: number;
+        /** ResourceStatistics cpus_throttled_time_secs */
+        cpus_throttled_time_secs?: number;
 
-        /** ResourceStatistics memTotalBytes */
-        memTotalBytes?: number;
+        /** ResourceStatistics mem_total_bytes */
+        mem_total_bytes?: number;
 
-        /** ResourceStatistics memTotalMemswBytes */
-        memTotalMemswBytes?: number;
+        /** ResourceStatistics mem_total_memsw_bytes */
+        mem_total_memsw_bytes?: number;
 
-        /** ResourceStatistics memLimitBytes */
-        memLimitBytes?: number;
+        /** ResourceStatistics mem_limit_bytes */
+        mem_limit_bytes?: number;
 
-        /** ResourceStatistics memSoftLimitBytes */
-        memSoftLimitBytes?: number;
+        /** ResourceStatistics mem_soft_limit_bytes */
+        mem_soft_limit_bytes?: number;
 
-        /** ResourceStatistics memFileBytes */
-        memFileBytes?: number;
+        /** ResourceStatistics mem_file_bytes */
+        mem_file_bytes?: number;
 
-        /** ResourceStatistics memAnonBytes */
-        memAnonBytes?: number;
+        /** ResourceStatistics mem_anon_bytes */
+        mem_anon_bytes?: number;
 
-        /** ResourceStatistics memCacheBytes */
-        memCacheBytes?: number;
+        /** ResourceStatistics mem_cache_bytes */
+        mem_cache_bytes?: number;
 
-        /** ResourceStatistics memRssBytes */
-        memRssBytes?: number;
+        /** ResourceStatistics mem_rss_bytes */
+        mem_rss_bytes?: number;
 
-        /** ResourceStatistics memMappedFileBytes */
-        memMappedFileBytes?: number;
+        /** ResourceStatistics mem_mapped_file_bytes */
+        mem_mapped_file_bytes?: number;
 
-        /** ResourceStatistics memSwapBytes */
-        memSwapBytes?: number;
+        /** ResourceStatistics mem_swap_bytes */
+        mem_swap_bytes?: number;
 
-        /** ResourceStatistics memUnevictableBytes */
-        memUnevictableBytes?: number;
+        /** ResourceStatistics mem_unevictable_bytes */
+        mem_unevictable_bytes?: number;
 
-        /** ResourceStatistics memLowPressureCounter */
-        memLowPressureCounter?: number;
+        /** ResourceStatistics mem_low_pressure_counter */
+        mem_low_pressure_counter?: number;
 
-        /** ResourceStatistics memMediumPressureCounter */
-        memMediumPressureCounter?: number;
+        /** ResourceStatistics mem_medium_pressure_counter */
+        mem_medium_pressure_counter?: number;
 
-        /** ResourceStatistics memCriticalPressureCounter */
-        memCriticalPressureCounter?: number;
+        /** ResourceStatistics mem_critical_pressure_counter */
+        mem_critical_pressure_counter?: number;
 
-        /** ResourceStatistics diskLimitBytes */
-        diskLimitBytes?: number;
+        /** ResourceStatistics disk_limit_bytes */
+        disk_limit_bytes?: number;
 
-        /** ResourceStatistics diskUsedBytes */
-        diskUsedBytes?: number;
+        /** ResourceStatistics disk_used_bytes */
+        disk_used_bytes?: number;
 
         /** ResourceStatistics perf */
         perf?: mesos.IPerfStatistics;
 
-        /** ResourceStatistics netRxPackets */
-        netRxPackets?: number;
+        /** ResourceStatistics net_rx_packets */
+        net_rx_packets?: number;
 
-        /** ResourceStatistics netRxBytes */
-        netRxBytes?: number;
+        /** ResourceStatistics net_rx_bytes */
+        net_rx_bytes?: number;
 
-        /** ResourceStatistics netRxErrors */
-        netRxErrors?: number;
+        /** ResourceStatistics net_rx_errors */
+        net_rx_errors?: number;
 
-        /** ResourceStatistics netRxDropped */
-        netRxDropped?: number;
+        /** ResourceStatistics net_rx_dropped */
+        net_rx_dropped?: number;
 
-        /** ResourceStatistics netTxPackets */
-        netTxPackets?: number;
+        /** ResourceStatistics net_tx_packets */
+        net_tx_packets?: number;
 
-        /** ResourceStatistics netTxBytes */
-        netTxBytes?: number;
+        /** ResourceStatistics net_tx_bytes */
+        net_tx_bytes?: number;
 
-        /** ResourceStatistics netTxErrors */
-        netTxErrors?: number;
+        /** ResourceStatistics net_tx_errors */
+        net_tx_errors?: number;
 
-        /** ResourceStatistics netTxDropped */
-        netTxDropped?: number;
+        /** ResourceStatistics net_tx_dropped */
+        net_tx_dropped?: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP50 */
-        netTcpRttMicrosecsP50?: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p50 */
+        net_tcp_rtt_microsecs_p50?: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP90 */
-        netTcpRttMicrosecsP90?: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p90 */
+        net_tcp_rtt_microsecs_p90?: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP95 */
-        netTcpRttMicrosecsP95?: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p95 */
+        net_tcp_rtt_microsecs_p95?: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP99 */
-        netTcpRttMicrosecsP99?: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p99 */
+        net_tcp_rtt_microsecs_p99?: number;
 
-        /** ResourceStatistics netTcpActiveConnections */
-        netTcpActiveConnections?: number;
+        /** ResourceStatistics net_tcp_active_connections */
+        net_tcp_active_connections?: number;
 
-        /** ResourceStatistics netTcpTimeWaitConnections */
-        netTcpTimeWaitConnections?: number;
+        /** ResourceStatistics net_tcp_time_wait_connections */
+        net_tcp_time_wait_connections?: number;
 
-        /** ResourceStatistics netTrafficControlStatistics */
-        netTrafficControlStatistics?: mesos.ITrafficControlStatistics[];
+        /** ResourceStatistics net_traffic_control_statistics */
+        net_traffic_control_statistics?: mesos.ITrafficControlStatistics[];
 
-        /** ResourceStatistics netSnmpStatistics */
-        netSnmpStatistics?: mesos.ISNMPStatistics;
+        /** ResourceStatistics net_snmp_statistics */
+        net_snmp_statistics?: mesos.ISNMPStatistics;
     }
 
     /** A snapshot of resource usage statistics. */
@@ -5985,122 +5996,122 @@ export namespace mesos {
         /** ResourceStatistics threads. */
         public threads: number;
 
-        /** ResourceStatistics cpusUserTimeSecs. */
-        public cpusUserTimeSecs: number;
+        /** ResourceStatistics cpus_user_time_secs. */
+        public cpus_user_time_secs: number;
 
-        /** ResourceStatistics cpusSystemTimeSecs. */
-        public cpusSystemTimeSecs: number;
+        /** ResourceStatistics cpus_system_time_secs. */
+        public cpus_system_time_secs: number;
 
-        /** ResourceStatistics cpusLimit. */
-        public cpusLimit: number;
+        /** ResourceStatistics cpus_limit. */
+        public cpus_limit: number;
 
-        /** ResourceStatistics cpusNrPeriods. */
-        public cpusNrPeriods: number;
+        /** ResourceStatistics cpus_nr_periods. */
+        public cpus_nr_periods: number;
 
-        /** ResourceStatistics cpusNrThrottled. */
-        public cpusNrThrottled: number;
+        /** ResourceStatistics cpus_nr_throttled. */
+        public cpus_nr_throttled: number;
 
-        /** ResourceStatistics cpusThrottledTimeSecs. */
-        public cpusThrottledTimeSecs: number;
+        /** ResourceStatistics cpus_throttled_time_secs. */
+        public cpus_throttled_time_secs: number;
 
-        /** ResourceStatistics memTotalBytes. */
-        public memTotalBytes: number;
+        /** ResourceStatistics mem_total_bytes. */
+        public mem_total_bytes: number;
 
-        /** ResourceStatistics memTotalMemswBytes. */
-        public memTotalMemswBytes: number;
+        /** ResourceStatistics mem_total_memsw_bytes. */
+        public mem_total_memsw_bytes: number;
 
-        /** ResourceStatistics memLimitBytes. */
-        public memLimitBytes: number;
+        /** ResourceStatistics mem_limit_bytes. */
+        public mem_limit_bytes: number;
 
-        /** ResourceStatistics memSoftLimitBytes. */
-        public memSoftLimitBytes: number;
+        /** ResourceStatistics mem_soft_limit_bytes. */
+        public mem_soft_limit_bytes: number;
 
-        /** ResourceStatistics memFileBytes. */
-        public memFileBytes: number;
+        /** ResourceStatistics mem_file_bytes. */
+        public mem_file_bytes: number;
 
-        /** ResourceStatistics memAnonBytes. */
-        public memAnonBytes: number;
+        /** ResourceStatistics mem_anon_bytes. */
+        public mem_anon_bytes: number;
 
-        /** ResourceStatistics memCacheBytes. */
-        public memCacheBytes: number;
+        /** ResourceStatistics mem_cache_bytes. */
+        public mem_cache_bytes: number;
 
-        /** ResourceStatistics memRssBytes. */
-        public memRssBytes: number;
+        /** ResourceStatistics mem_rss_bytes. */
+        public mem_rss_bytes: number;
 
-        /** ResourceStatistics memMappedFileBytes. */
-        public memMappedFileBytes: number;
+        /** ResourceStatistics mem_mapped_file_bytes. */
+        public mem_mapped_file_bytes: number;
 
-        /** ResourceStatistics memSwapBytes. */
-        public memSwapBytes: number;
+        /** ResourceStatistics mem_swap_bytes. */
+        public mem_swap_bytes: number;
 
-        /** ResourceStatistics memUnevictableBytes. */
-        public memUnevictableBytes: number;
+        /** ResourceStatistics mem_unevictable_bytes. */
+        public mem_unevictable_bytes: number;
 
-        /** ResourceStatistics memLowPressureCounter. */
-        public memLowPressureCounter: number;
+        /** ResourceStatistics mem_low_pressure_counter. */
+        public mem_low_pressure_counter: number;
 
-        /** ResourceStatistics memMediumPressureCounter. */
-        public memMediumPressureCounter: number;
+        /** ResourceStatistics mem_medium_pressure_counter. */
+        public mem_medium_pressure_counter: number;
 
-        /** ResourceStatistics memCriticalPressureCounter. */
-        public memCriticalPressureCounter: number;
+        /** ResourceStatistics mem_critical_pressure_counter. */
+        public mem_critical_pressure_counter: number;
 
-        /** ResourceStatistics diskLimitBytes. */
-        public diskLimitBytes: number;
+        /** ResourceStatistics disk_limit_bytes. */
+        public disk_limit_bytes: number;
 
-        /** ResourceStatistics diskUsedBytes. */
-        public diskUsedBytes: number;
+        /** ResourceStatistics disk_used_bytes. */
+        public disk_used_bytes: number;
 
         /** ResourceStatistics perf. */
         public perf?: (mesos.IPerfStatistics|null);
 
-        /** ResourceStatistics netRxPackets. */
-        public netRxPackets: number;
+        /** ResourceStatistics net_rx_packets. */
+        public net_rx_packets: number;
 
-        /** ResourceStatistics netRxBytes. */
-        public netRxBytes: number;
+        /** ResourceStatistics net_rx_bytes. */
+        public net_rx_bytes: number;
 
-        /** ResourceStatistics netRxErrors. */
-        public netRxErrors: number;
+        /** ResourceStatistics net_rx_errors. */
+        public net_rx_errors: number;
 
-        /** ResourceStatistics netRxDropped. */
-        public netRxDropped: number;
+        /** ResourceStatistics net_rx_dropped. */
+        public net_rx_dropped: number;
 
-        /** ResourceStatistics netTxPackets. */
-        public netTxPackets: number;
+        /** ResourceStatistics net_tx_packets. */
+        public net_tx_packets: number;
 
-        /** ResourceStatistics netTxBytes. */
-        public netTxBytes: number;
+        /** ResourceStatistics net_tx_bytes. */
+        public net_tx_bytes: number;
 
-        /** ResourceStatistics netTxErrors. */
-        public netTxErrors: number;
+        /** ResourceStatistics net_tx_errors. */
+        public net_tx_errors: number;
 
-        /** ResourceStatistics netTxDropped. */
-        public netTxDropped: number;
+        /** ResourceStatistics net_tx_dropped. */
+        public net_tx_dropped: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP50. */
-        public netTcpRttMicrosecsP50: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p50. */
+        public net_tcp_rtt_microsecs_p50: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP90. */
-        public netTcpRttMicrosecsP90: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p90. */
+        public net_tcp_rtt_microsecs_p90: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP95. */
-        public netTcpRttMicrosecsP95: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p95. */
+        public net_tcp_rtt_microsecs_p95: number;
 
-        /** ResourceStatistics netTcpRttMicrosecsP99. */
-        public netTcpRttMicrosecsP99: number;
+        /** ResourceStatistics net_tcp_rtt_microsecs_p99. */
+        public net_tcp_rtt_microsecs_p99: number;
 
-        /** ResourceStatistics netTcpActiveConnections. */
-        public netTcpActiveConnections: number;
+        /** ResourceStatistics net_tcp_active_connections. */
+        public net_tcp_active_connections: number;
 
-        /** ResourceStatistics netTcpTimeWaitConnections. */
-        public netTcpTimeWaitConnections: number;
+        /** ResourceStatistics net_tcp_time_wait_connections. */
+        public net_tcp_time_wait_connections: number;
 
-        /** ResourceStatistics netTrafficControlStatistics. */
-        public netTrafficControlStatistics: mesos.ITrafficControlStatistics[];
+        /** ResourceStatistics net_traffic_control_statistics. */
+        public net_traffic_control_statistics: mesos.ITrafficControlStatistics[];
 
-        /** ResourceStatistics netSnmpStatistics. */
-        public netSnmpStatistics?: (mesos.ISNMPStatistics|null);
+        /** ResourceStatistics net_snmp_statistics. */
+        public net_snmp_statistics?: (mesos.ISNMPStatistics|null);
 
         /**
          * Creates a new ResourceStatistics instance using the specified properties.
@@ -6274,8 +6285,8 @@ export namespace mesos {
         /** Properties of an Executor. */
         interface IExecutor {
 
-            /** Executor executorInfo */
-            executorInfo: mesos.IExecutorInfo;
+            /** Executor executor_info */
+            executor_info: mesos.IExecutorInfo;
 
             /** Executor allocated */
             allocated?: mesos.IResource[];
@@ -6283,8 +6294,8 @@ export namespace mesos {
             /** Executor statistics */
             statistics?: mesos.IResourceStatistics;
 
-            /** Executor containerId */
-            containerId: mesos.IContainerID;
+            /** Executor container_id */
+            container_id: mesos.IContainerID;
 
             /** Executor tasks */
             tasks?: mesos.ResourceUsage.Executor.ITask[];
@@ -6299,8 +6310,8 @@ export namespace mesos {
              */
             constructor(properties?: mesos.ResourceUsage.IExecutor);
 
-            /** Executor executorInfo. */
-            public executorInfo: mesos.IExecutorInfo;
+            /** Executor executor_info. */
+            public executor_info: mesos.IExecutorInfo;
 
             /** Executor allocated. */
             public allocated: mesos.IResource[];
@@ -6308,8 +6319,8 @@ export namespace mesos {
             /** Executor statistics. */
             public statistics?: (mesos.IResourceStatistics|null);
 
-            /** Executor containerId. */
-            public containerId: mesos.IContainerID;
+            /** Executor container_id. */
+            public container_id: mesos.IContainerID;
 
             /** Executor tasks. */
             public tasks: mesos.ResourceUsage.Executor.ITask[];
@@ -6509,155 +6520,155 @@ export namespace mesos {
         /** PerfStatistics cycles */
         cycles?: number;
 
-        /** PerfStatistics stalledCyclesFrontend */
-        stalledCyclesFrontend?: number;
+        /** PerfStatistics stalled_cycles_frontend */
+        stalled_cycles_frontend?: number;
 
-        /** PerfStatistics stalledCyclesBackend */
-        stalledCyclesBackend?: number;
+        /** PerfStatistics stalled_cycles_backend */
+        stalled_cycles_backend?: number;
 
         /** PerfStatistics instructions */
         instructions?: number;
 
-        /** PerfStatistics cacheReferences */
-        cacheReferences?: number;
+        /** PerfStatistics cache_references */
+        cache_references?: number;
 
-        /** PerfStatistics cacheMisses */
-        cacheMisses?: number;
+        /** PerfStatistics cache_misses */
+        cache_misses?: number;
 
         /** PerfStatistics branches */
         branches?: number;
 
-        /** PerfStatistics branchMisses */
-        branchMisses?: number;
+        /** PerfStatistics branch_misses */
+        branch_misses?: number;
 
-        /** PerfStatistics busCycles */
-        busCycles?: number;
+        /** PerfStatistics bus_cycles */
+        bus_cycles?: number;
 
-        /** PerfStatistics refCycles */
-        refCycles?: number;
+        /** PerfStatistics ref_cycles */
+        ref_cycles?: number;
 
-        /** PerfStatistics cpuClock */
-        cpuClock?: number;
+        /** PerfStatistics cpu_clock */
+        cpu_clock?: number;
 
-        /** PerfStatistics taskClock */
-        taskClock?: number;
+        /** PerfStatistics task_clock */
+        task_clock?: number;
 
-        /** PerfStatistics pageFaults */
-        pageFaults?: number;
+        /** PerfStatistics page_faults */
+        page_faults?: number;
 
-        /** PerfStatistics minorFaults */
-        minorFaults?: number;
+        /** PerfStatistics minor_faults */
+        minor_faults?: number;
 
-        /** PerfStatistics majorFaults */
-        majorFaults?: number;
+        /** PerfStatistics major_faults */
+        major_faults?: number;
 
-        /** PerfStatistics contextSwitches */
-        contextSwitches?: number;
+        /** PerfStatistics context_switches */
+        context_switches?: number;
 
-        /** PerfStatistics cpuMigrations */
-        cpuMigrations?: number;
+        /** PerfStatistics cpu_migrations */
+        cpu_migrations?: number;
 
-        /** PerfStatistics alignmentFaults */
-        alignmentFaults?: number;
+        /** PerfStatistics alignment_faults */
+        alignment_faults?: number;
 
-        /** PerfStatistics emulationFaults */
-        emulationFaults?: number;
+        /** PerfStatistics emulation_faults */
+        emulation_faults?: number;
 
-        /** PerfStatistics l1DcacheLoads */
-        l1DcacheLoads?: number;
+        /** PerfStatistics l1_dcache_loads */
+        l1_dcache_loads?: number;
 
-        /** PerfStatistics l1DcacheLoadMisses */
-        l1DcacheLoadMisses?: number;
+        /** PerfStatistics l1_dcache_load_misses */
+        l1_dcache_load_misses?: number;
 
-        /** PerfStatistics l1DcacheStores */
-        l1DcacheStores?: number;
+        /** PerfStatistics l1_dcache_stores */
+        l1_dcache_stores?: number;
 
-        /** PerfStatistics l1DcacheStoreMisses */
-        l1DcacheStoreMisses?: number;
+        /** PerfStatistics l1_dcache_store_misses */
+        l1_dcache_store_misses?: number;
 
-        /** PerfStatistics l1DcachePrefetches */
-        l1DcachePrefetches?: number;
+        /** PerfStatistics l1_dcache_prefetches */
+        l1_dcache_prefetches?: number;
 
-        /** PerfStatistics l1DcachePrefetchMisses */
-        l1DcachePrefetchMisses?: number;
+        /** PerfStatistics l1_dcache_prefetch_misses */
+        l1_dcache_prefetch_misses?: number;
 
-        /** PerfStatistics l1IcacheLoads */
-        l1IcacheLoads?: number;
+        /** PerfStatistics l1_icache_loads */
+        l1_icache_loads?: number;
 
-        /** PerfStatistics l1IcacheLoadMisses */
-        l1IcacheLoadMisses?: number;
+        /** PerfStatistics l1_icache_load_misses */
+        l1_icache_load_misses?: number;
 
-        /** PerfStatistics l1IcachePrefetches */
-        l1IcachePrefetches?: number;
+        /** PerfStatistics l1_icache_prefetches */
+        l1_icache_prefetches?: number;
 
-        /** PerfStatistics l1IcachePrefetchMisses */
-        l1IcachePrefetchMisses?: number;
+        /** PerfStatistics l1_icache_prefetch_misses */
+        l1_icache_prefetch_misses?: number;
 
-        /** PerfStatistics llcLoads */
-        llcLoads?: number;
+        /** PerfStatistics llc_loads */
+        llc_loads?: number;
 
-        /** PerfStatistics llcLoadMisses */
-        llcLoadMisses?: number;
+        /** PerfStatistics llc_load_misses */
+        llc_load_misses?: number;
 
-        /** PerfStatistics llcStores */
-        llcStores?: number;
+        /** PerfStatistics llc_stores */
+        llc_stores?: number;
 
-        /** PerfStatistics llcStoreMisses */
-        llcStoreMisses?: number;
+        /** PerfStatistics llc_store_misses */
+        llc_store_misses?: number;
 
-        /** PerfStatistics llcPrefetches */
-        llcPrefetches?: number;
+        /** PerfStatistics llc_prefetches */
+        llc_prefetches?: number;
 
-        /** PerfStatistics llcPrefetchMisses */
-        llcPrefetchMisses?: number;
+        /** PerfStatistics llc_prefetch_misses */
+        llc_prefetch_misses?: number;
 
-        /** PerfStatistics dtlbLoads */
-        dtlbLoads?: number;
+        /** PerfStatistics dtlb_loads */
+        dtlb_loads?: number;
 
-        /** PerfStatistics dtlbLoadMisses */
-        dtlbLoadMisses?: number;
+        /** PerfStatistics dtlb_load_misses */
+        dtlb_load_misses?: number;
 
-        /** PerfStatistics dtlbStores */
-        dtlbStores?: number;
+        /** PerfStatistics dtlb_stores */
+        dtlb_stores?: number;
 
-        /** PerfStatistics dtlbStoreMisses */
-        dtlbStoreMisses?: number;
+        /** PerfStatistics dtlb_store_misses */
+        dtlb_store_misses?: number;
 
-        /** PerfStatistics dtlbPrefetches */
-        dtlbPrefetches?: number;
+        /** PerfStatistics dtlb_prefetches */
+        dtlb_prefetches?: number;
 
-        /** PerfStatistics dtlbPrefetchMisses */
-        dtlbPrefetchMisses?: number;
+        /** PerfStatistics dtlb_prefetch_misses */
+        dtlb_prefetch_misses?: number;
 
-        /** PerfStatistics itlbLoads */
-        itlbLoads?: number;
+        /** PerfStatistics itlb_loads */
+        itlb_loads?: number;
 
-        /** PerfStatistics itlbLoadMisses */
-        itlbLoadMisses?: number;
+        /** PerfStatistics itlb_load_misses */
+        itlb_load_misses?: number;
 
-        /** PerfStatistics branchLoads */
-        branchLoads?: number;
+        /** PerfStatistics branch_loads */
+        branch_loads?: number;
 
-        /** PerfStatistics branchLoadMisses */
-        branchLoadMisses?: number;
+        /** PerfStatistics branch_load_misses */
+        branch_load_misses?: number;
 
-        /** PerfStatistics nodeLoads */
-        nodeLoads?: number;
+        /** PerfStatistics node_loads */
+        node_loads?: number;
 
-        /** PerfStatistics nodeLoadMisses */
-        nodeLoadMisses?: number;
+        /** PerfStatistics node_load_misses */
+        node_load_misses?: number;
 
-        /** PerfStatistics nodeStores */
-        nodeStores?: number;
+        /** PerfStatistics node_stores */
+        node_stores?: number;
 
-        /** PerfStatistics nodeStoreMisses */
-        nodeStoreMisses?: number;
+        /** PerfStatistics node_store_misses */
+        node_store_misses?: number;
 
-        /** PerfStatistics nodePrefetches */
-        nodePrefetches?: number;
+        /** PerfStatistics node_prefetches */
+        node_prefetches?: number;
 
-        /** PerfStatistics nodePrefetchMisses */
-        nodePrefetchMisses?: number;
+        /** PerfStatistics node_prefetch_misses */
+        node_prefetch_misses?: number;
     }
 
     /**
@@ -6689,155 +6700,155 @@ export namespace mesos {
         /** PerfStatistics cycles. */
         public cycles: number;
 
-        /** PerfStatistics stalledCyclesFrontend. */
-        public stalledCyclesFrontend: number;
+        /** PerfStatistics stalled_cycles_frontend. */
+        public stalled_cycles_frontend: number;
 
-        /** PerfStatistics stalledCyclesBackend. */
-        public stalledCyclesBackend: number;
+        /** PerfStatistics stalled_cycles_backend. */
+        public stalled_cycles_backend: number;
 
         /** PerfStatistics instructions. */
         public instructions: number;
 
-        /** PerfStatistics cacheReferences. */
-        public cacheReferences: number;
+        /** PerfStatistics cache_references. */
+        public cache_references: number;
 
-        /** PerfStatistics cacheMisses. */
-        public cacheMisses: number;
+        /** PerfStatistics cache_misses. */
+        public cache_misses: number;
 
         /** PerfStatistics branches. */
         public branches: number;
 
-        /** PerfStatistics branchMisses. */
-        public branchMisses: number;
+        /** PerfStatistics branch_misses. */
+        public branch_misses: number;
 
-        /** PerfStatistics busCycles. */
-        public busCycles: number;
+        /** PerfStatistics bus_cycles. */
+        public bus_cycles: number;
 
-        /** PerfStatistics refCycles. */
-        public refCycles: number;
+        /** PerfStatistics ref_cycles. */
+        public ref_cycles: number;
 
-        /** PerfStatistics cpuClock. */
-        public cpuClock: number;
+        /** PerfStatistics cpu_clock. */
+        public cpu_clock: number;
 
-        /** PerfStatistics taskClock. */
-        public taskClock: number;
+        /** PerfStatistics task_clock. */
+        public task_clock: number;
 
-        /** PerfStatistics pageFaults. */
-        public pageFaults: number;
+        /** PerfStatistics page_faults. */
+        public page_faults: number;
 
-        /** PerfStatistics minorFaults. */
-        public minorFaults: number;
+        /** PerfStatistics minor_faults. */
+        public minor_faults: number;
 
-        /** PerfStatistics majorFaults. */
-        public majorFaults: number;
+        /** PerfStatistics major_faults. */
+        public major_faults: number;
 
-        /** PerfStatistics contextSwitches. */
-        public contextSwitches: number;
+        /** PerfStatistics context_switches. */
+        public context_switches: number;
 
-        /** PerfStatistics cpuMigrations. */
-        public cpuMigrations: number;
+        /** PerfStatistics cpu_migrations. */
+        public cpu_migrations: number;
 
-        /** PerfStatistics alignmentFaults. */
-        public alignmentFaults: number;
+        /** PerfStatistics alignment_faults. */
+        public alignment_faults: number;
 
-        /** PerfStatistics emulationFaults. */
-        public emulationFaults: number;
+        /** PerfStatistics emulation_faults. */
+        public emulation_faults: number;
 
-        /** PerfStatistics l1DcacheLoads. */
-        public l1DcacheLoads: number;
+        /** PerfStatistics l1_dcache_loads. */
+        public l1_dcache_loads: number;
 
-        /** PerfStatistics l1DcacheLoadMisses. */
-        public l1DcacheLoadMisses: number;
+        /** PerfStatistics l1_dcache_load_misses. */
+        public l1_dcache_load_misses: number;
 
-        /** PerfStatistics l1DcacheStores. */
-        public l1DcacheStores: number;
+        /** PerfStatistics l1_dcache_stores. */
+        public l1_dcache_stores: number;
 
-        /** PerfStatistics l1DcacheStoreMisses. */
-        public l1DcacheStoreMisses: number;
+        /** PerfStatistics l1_dcache_store_misses. */
+        public l1_dcache_store_misses: number;
 
-        /** PerfStatistics l1DcachePrefetches. */
-        public l1DcachePrefetches: number;
+        /** PerfStatistics l1_dcache_prefetches. */
+        public l1_dcache_prefetches: number;
 
-        /** PerfStatistics l1DcachePrefetchMisses. */
-        public l1DcachePrefetchMisses: number;
+        /** PerfStatistics l1_dcache_prefetch_misses. */
+        public l1_dcache_prefetch_misses: number;
 
-        /** PerfStatistics l1IcacheLoads. */
-        public l1IcacheLoads: number;
+        /** PerfStatistics l1_icache_loads. */
+        public l1_icache_loads: number;
 
-        /** PerfStatistics l1IcacheLoadMisses. */
-        public l1IcacheLoadMisses: number;
+        /** PerfStatistics l1_icache_load_misses. */
+        public l1_icache_load_misses: number;
 
-        /** PerfStatistics l1IcachePrefetches. */
-        public l1IcachePrefetches: number;
+        /** PerfStatistics l1_icache_prefetches. */
+        public l1_icache_prefetches: number;
 
-        /** PerfStatistics l1IcachePrefetchMisses. */
-        public l1IcachePrefetchMisses: number;
+        /** PerfStatistics l1_icache_prefetch_misses. */
+        public l1_icache_prefetch_misses: number;
 
-        /** PerfStatistics llcLoads. */
-        public llcLoads: number;
+        /** PerfStatistics llc_loads. */
+        public llc_loads: number;
 
-        /** PerfStatistics llcLoadMisses. */
-        public llcLoadMisses: number;
+        /** PerfStatistics llc_load_misses. */
+        public llc_load_misses: number;
 
-        /** PerfStatistics llcStores. */
-        public llcStores: number;
+        /** PerfStatistics llc_stores. */
+        public llc_stores: number;
 
-        /** PerfStatistics llcStoreMisses. */
-        public llcStoreMisses: number;
+        /** PerfStatistics llc_store_misses. */
+        public llc_store_misses: number;
 
-        /** PerfStatistics llcPrefetches. */
-        public llcPrefetches: number;
+        /** PerfStatistics llc_prefetches. */
+        public llc_prefetches: number;
 
-        /** PerfStatistics llcPrefetchMisses. */
-        public llcPrefetchMisses: number;
+        /** PerfStatistics llc_prefetch_misses. */
+        public llc_prefetch_misses: number;
 
-        /** PerfStatistics dtlbLoads. */
-        public dtlbLoads: number;
+        /** PerfStatistics dtlb_loads. */
+        public dtlb_loads: number;
 
-        /** PerfStatistics dtlbLoadMisses. */
-        public dtlbLoadMisses: number;
+        /** PerfStatistics dtlb_load_misses. */
+        public dtlb_load_misses: number;
 
-        /** PerfStatistics dtlbStores. */
-        public dtlbStores: number;
+        /** PerfStatistics dtlb_stores. */
+        public dtlb_stores: number;
 
-        /** PerfStatistics dtlbStoreMisses. */
-        public dtlbStoreMisses: number;
+        /** PerfStatistics dtlb_store_misses. */
+        public dtlb_store_misses: number;
 
-        /** PerfStatistics dtlbPrefetches. */
-        public dtlbPrefetches: number;
+        /** PerfStatistics dtlb_prefetches. */
+        public dtlb_prefetches: number;
 
-        /** PerfStatistics dtlbPrefetchMisses. */
-        public dtlbPrefetchMisses: number;
+        /** PerfStatistics dtlb_prefetch_misses. */
+        public dtlb_prefetch_misses: number;
 
-        /** PerfStatistics itlbLoads. */
-        public itlbLoads: number;
+        /** PerfStatistics itlb_loads. */
+        public itlb_loads: number;
 
-        /** PerfStatistics itlbLoadMisses. */
-        public itlbLoadMisses: number;
+        /** PerfStatistics itlb_load_misses. */
+        public itlb_load_misses: number;
 
-        /** PerfStatistics branchLoads. */
-        public branchLoads: number;
+        /** PerfStatistics branch_loads. */
+        public branch_loads: number;
 
-        /** PerfStatistics branchLoadMisses. */
-        public branchLoadMisses: number;
+        /** PerfStatistics branch_load_misses. */
+        public branch_load_misses: number;
 
-        /** PerfStatistics nodeLoads. */
-        public nodeLoads: number;
+        /** PerfStatistics node_loads. */
+        public node_loads: number;
 
-        /** PerfStatistics nodeLoadMisses. */
-        public nodeLoadMisses: number;
+        /** PerfStatistics node_load_misses. */
+        public node_load_misses: number;
 
-        /** PerfStatistics nodeStores. */
-        public nodeStores: number;
+        /** PerfStatistics node_stores. */
+        public node_stores: number;
 
-        /** PerfStatistics nodeStoreMisses. */
-        public nodeStoreMisses: number;
+        /** PerfStatistics node_store_misses. */
+        public node_store_misses: number;
 
-        /** PerfStatistics nodePrefetches. */
-        public nodePrefetches: number;
+        /** PerfStatistics node_prefetches. */
+        public node_prefetches: number;
 
-        /** PerfStatistics nodePrefetchMisses. */
-        public nodePrefetchMisses: number;
+        /** PerfStatistics node_prefetch_misses. */
+        public node_prefetch_misses: number;
 
         /**
          * Creates a new PerfStatistics instance using the specified properties.
@@ -6913,8 +6924,8 @@ export namespace mesos {
     /** Properties of a Request. */
     interface IRequest {
 
-        /** Request agentId */
-        agentId?: mesos.IAgentID;
+        /** Request agent_id */
+        agent_id?: mesos.IAgentID;
 
         /** Request resources */
         resources?: mesos.IResource[];
@@ -6934,8 +6945,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.IRequest);
 
-        /** Request agentId. */
-        public agentId?: (mesos.IAgentID|null);
+        /** Request agent_id. */
+        public agent_id?: (mesos.IAgentID|null);
 
         /** Request resources. */
         public resources: mesos.IResource[];
@@ -7017,11 +7028,11 @@ export namespace mesos {
         /** Offer id */
         id: mesos.IOfferID;
 
-        /** Offer frameworkId */
-        frameworkId: mesos.IFrameworkID;
+        /** Offer framework_id */
+        framework_id: mesos.IFrameworkID;
 
-        /** Offer agentId */
-        agentId: mesos.IAgentID;
+        /** Offer agent_id */
+        agent_id: mesos.IAgentID;
 
         /** Offer hostname */
         hostname: string;
@@ -7035,14 +7046,14 @@ export namespace mesos {
         /** Offer attributes */
         attributes?: mesos.IAttribute[];
 
-        /** Offer executorIds */
-        executorIds?: mesos.IExecutorID[];
+        /** Offer executor_ids */
+        executor_ids?: mesos.IExecutorID[];
 
         /** Offer unavailability */
         unavailability?: mesos.IUnavailability;
 
-        /** Offer allocationInfo */
-        allocationInfo?: mesos.Resource.IAllocationInfo;
+        /** Offer allocation_info */
+        allocation_info?: mesos.Resource.IAllocationInfo;
     }
 
     /**
@@ -7060,11 +7071,11 @@ export namespace mesos {
         /** Offer id. */
         public id: mesos.IOfferID;
 
-        /** Offer frameworkId. */
-        public frameworkId: mesos.IFrameworkID;
+        /** Offer framework_id. */
+        public framework_id: mesos.IFrameworkID;
 
-        /** Offer agentId. */
-        public agentId: mesos.IAgentID;
+        /** Offer agent_id. */
+        public agent_id: mesos.IAgentID;
 
         /** Offer hostname. */
         public hostname: string;
@@ -7078,14 +7089,14 @@ export namespace mesos {
         /** Offer attributes. */
         public attributes: mesos.IAttribute[];
 
-        /** Offer executorIds. */
-        public executorIds: mesos.IExecutorID[];
+        /** Offer executor_ids. */
+        public executor_ids: mesos.IExecutorID[];
 
         /** Offer unavailability. */
         public unavailability?: (mesos.IUnavailability|null);
 
-        /** Offer allocationInfo. */
-        public allocationInfo?: (mesos.Resource.IAllocationInfo|null);
+        /** Offer allocation_info. */
+        public allocation_info?: (mesos.Resource.IAllocationInfo|null);
 
         /**
          * Creates a new Offer instance using the specified properties.
@@ -7169,8 +7180,8 @@ export namespace mesos {
             /** Operation launch */
             launch?: mesos.Offer.Operation.ILaunch;
 
-            /** Operation launchGroup */
-            launchGroup?: mesos.Offer.Operation.ILaunchGroup;
+            /** Operation launch_group */
+            launch_group?: mesos.Offer.Operation.ILaunchGroup;
 
             /** Operation reserve */
             reserve?: mesos.Offer.Operation.IReserve;
@@ -7200,8 +7211,8 @@ export namespace mesos {
             /** Operation launch. */
             public launch?: (mesos.Offer.Operation.ILaunch|null);
 
-            /** Operation launchGroup. */
-            public launchGroup?: (mesos.Offer.Operation.ILaunchGroup|null);
+            /** Operation launch_group. */
+            public launch_group?: (mesos.Offer.Operation.ILaunchGroup|null);
 
             /** Operation reserve. */
             public reserve?: (mesos.Offer.Operation.IReserve|null);
@@ -7302,8 +7313,8 @@ export namespace mesos {
             /** Properties of a Launch. */
             interface ILaunch {
 
-                /** Launch taskInfos */
-                taskInfos?: mesos.ITaskInfo[];
+                /** Launch task_infos */
+                task_infos?: mesos.ITaskInfo[];
             }
 
             /** Represents a Launch. */
@@ -7315,8 +7326,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.Offer.Operation.ILaunch);
 
-                /** Launch taskInfos. */
-                public taskInfos: mesos.ITaskInfo[];
+                /** Launch task_infos. */
+                public task_infos: mesos.ITaskInfo[];
 
                 /**
                  * Creates a new Launch instance using the specified properties.
@@ -7395,8 +7406,8 @@ export namespace mesos {
                 /** LaunchGroup executor */
                 executor: mesos.IExecutorInfo;
 
-                /** LaunchGroup taskGroup */
-                taskGroup: mesos.ITaskGroupInfo;
+                /** LaunchGroup task_group */
+                task_group: mesos.ITaskGroupInfo;
             }
 
             /** Represents a LaunchGroup. */
@@ -7411,8 +7422,8 @@ export namespace mesos {
                 /** LaunchGroup executor. */
                 public executor: mesos.IExecutorInfo;
 
-                /** LaunchGroup taskGroup. */
-                public taskGroup: mesos.ITaskGroupInfo;
+                /** LaunchGroup task_group. */
+                public task_group: mesos.ITaskGroupInfo;
 
                 /**
                  * Creates a new LaunchGroup instance using the specified properties.
@@ -7856,11 +7867,11 @@ export namespace mesos {
         /** InverseOffer url */
         url?: mesos.IURL;
 
-        /** InverseOffer frameworkId */
-        frameworkId: mesos.IFrameworkID;
+        /** InverseOffer framework_id */
+        framework_id: mesos.IFrameworkID;
 
-        /** InverseOffer agentId */
-        agentId?: mesos.IAgentID;
+        /** InverseOffer agent_id */
+        agent_id?: mesos.IAgentID;
 
         /** InverseOffer unavailability */
         unavailability: mesos.IUnavailability;
@@ -7884,11 +7895,11 @@ export namespace mesos {
         /** InverseOffer url. */
         public url?: (mesos.IURL|null);
 
-        /** InverseOffer frameworkId. */
-        public frameworkId: mesos.IFrameworkID;
+        /** InverseOffer framework_id. */
+        public framework_id: mesos.IFrameworkID;
 
-        /** InverseOffer agentId. */
-        public agentId?: (mesos.IAgentID|null);
+        /** InverseOffer agent_id. */
+        public agent_id?: (mesos.IAgentID|null);
 
         /** InverseOffer unavailability. */
         public unavailability: mesos.IUnavailability;
@@ -7973,11 +7984,11 @@ export namespace mesos {
         /** TaskInfo name */
         name: string;
 
-        /** TaskInfo taskId */
-        taskId: mesos.ITaskID;
+        /** TaskInfo task_id */
+        task_id: mesos.ITaskID;
 
-        /** TaskInfo agentId */
-        agentId: mesos.IAgentID;
+        /** TaskInfo agent_id */
+        agent_id: mesos.IAgentID;
 
         /** TaskInfo resources */
         resources?: mesos.IResource[];
@@ -7991,14 +8002,14 @@ export namespace mesos {
         /** TaskInfo container */
         container?: mesos.IContainerInfo;
 
-        /** TaskInfo healthCheck */
-        healthCheck?: mesos.IHealthCheck;
+        /** TaskInfo health_check */
+        health_check?: mesos.IHealthCheck;
 
         /** TaskInfo check */
         check?: mesos.ICheckInfo;
 
-        /** TaskInfo killPolicy */
-        killPolicy?: mesos.IKillPolicy;
+        /** TaskInfo kill_policy */
+        kill_policy?: mesos.IKillPolicy;
 
         /** TaskInfo data */
         data?: Uint8Array;
@@ -8028,11 +8039,11 @@ export namespace mesos {
         /** TaskInfo name. */
         public name: string;
 
-        /** TaskInfo taskId. */
-        public taskId: mesos.ITaskID;
+        /** TaskInfo task_id. */
+        public task_id: mesos.ITaskID;
 
-        /** TaskInfo agentId. */
-        public agentId: mesos.IAgentID;
+        /** TaskInfo agent_id. */
+        public agent_id: mesos.IAgentID;
 
         /** TaskInfo resources. */
         public resources: mesos.IResource[];
@@ -8046,14 +8057,14 @@ export namespace mesos {
         /** TaskInfo container. */
         public container?: (mesos.IContainerInfo|null);
 
-        /** TaskInfo healthCheck. */
-        public healthCheck?: (mesos.IHealthCheck|null);
+        /** TaskInfo health_check. */
+        public health_check?: (mesos.IHealthCheck|null);
 
         /** TaskInfo check. */
         public check?: (mesos.ICheckInfo|null);
 
-        /** TaskInfo killPolicy. */
-        public killPolicy?: (mesos.IKillPolicy|null);
+        /** TaskInfo kill_policy. */
+        public kill_policy?: (mesos.IKillPolicy|null);
 
         /** TaskInfo data. */
         public data: Uint8Array;
@@ -8240,17 +8251,17 @@ export namespace mesos {
         /** Task name */
         name: string;
 
-        /** Task taskId */
-        taskId: mesos.ITaskID;
+        /** Task task_id */
+        task_id: mesos.ITaskID;
 
-        /** Task frameworkId */
-        frameworkId: mesos.IFrameworkID;
+        /** Task framework_id */
+        framework_id: mesos.IFrameworkID;
 
-        /** Task executorId */
-        executorId?: mesos.IExecutorID;
+        /** Task executor_id */
+        executor_id?: mesos.IExecutorID;
 
-        /** Task agentId */
-        agentId: mesos.IAgentID;
+        /** Task agent_id */
+        agent_id: mesos.IAgentID;
 
         /** Task state */
         state: mesos.TaskState;
@@ -8261,11 +8272,11 @@ export namespace mesos {
         /** Task statuses */
         statuses?: mesos.ITaskStatus[];
 
-        /** Task statusUpdateState */
-        statusUpdateState?: mesos.TaskState;
+        /** Task status_update_state */
+        status_update_state?: mesos.TaskState;
 
-        /** Task statusUpdateUuid */
-        statusUpdateUuid?: Uint8Array;
+        /** Task status_update_uuid */
+        status_update_uuid?: Uint8Array;
 
         /** Task labels */
         labels?: mesos.ILabels;
@@ -8304,17 +8315,17 @@ export namespace mesos {
         /** Task name. */
         public name: string;
 
-        /** Task taskId. */
-        public taskId: mesos.ITaskID;
+        /** Task task_id. */
+        public task_id: mesos.ITaskID;
 
-        /** Task frameworkId. */
-        public frameworkId: mesos.IFrameworkID;
+        /** Task framework_id. */
+        public framework_id: mesos.IFrameworkID;
 
-        /** Task executorId. */
-        public executorId?: (mesos.IExecutorID|null);
+        /** Task executor_id. */
+        public executor_id?: (mesos.IExecutorID|null);
 
-        /** Task agentId. */
-        public agentId: mesos.IAgentID;
+        /** Task agent_id. */
+        public agent_id: mesos.IAgentID;
 
         /** Task state. */
         public state: mesos.TaskState;
@@ -8325,11 +8336,11 @@ export namespace mesos {
         /** Task statuses. */
         public statuses: mesos.ITaskStatus[];
 
-        /** Task statusUpdateState. */
-        public statusUpdateState: mesos.TaskState;
+        /** Task status_update_state. */
+        public status_update_state: mesos.TaskState;
 
-        /** Task statusUpdateUuid. */
-        public statusUpdateUuid: Uint8Array;
+        /** Task status_update_uuid. */
+        public status_update_uuid: Uint8Array;
 
         /** Task labels. */
         public labels?: (mesos.ILabels|null);
@@ -8412,6 +8423,30 @@ export namespace mesos {
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
+    }
+
+    /**
+     * Describes possible task states. IMPORTANT: Mesos assumes tasks that
+     * enter terminal states (see below) imply the task is no longer
+     * running and thus clean up any thing associated with the task
+     * (ultimately offering any resources being consumed by that task to
+     * another task).
+     */
+    enum TaskState {
+        TASK_STAGING = 6,
+        TASK_STARTING = 0,
+        TASK_RUNNING = 1,
+        TASK_KILLING = 8,
+        TASK_FINISHED = 2,
+        TASK_FAILED = 3,
+        TASK_KILLED = 4,
+        TASK_ERROR = 7,
+        TASK_LOST = 5,
+        TASK_DROPPED = 9,
+        TASK_UNREACHABLE = 10,
+        TASK_GONE = 11,
+        TASK_GONE_BY_OPERATOR = 12,
+        TASK_UNKNOWN = 13
     }
 
     /** Properties of a CheckStatusInfo. */
@@ -8528,8 +8563,8 @@ export namespace mesos {
         /** Properties of a Command. */
         interface ICommand {
 
-            /** Command exitCode */
-            exitCode?: number;
+            /** Command exit_code */
+            exit_code?: number;
         }
 
         /** Represents a Command. */
@@ -8541,8 +8576,8 @@ export namespace mesos {
              */
             constructor(properties?: mesos.CheckStatusInfo.ICommand);
 
-            /** Command exitCode. */
-            public exitCode: number;
+            /** Command exit_code. */
+            public exit_code: number;
 
             /**
              * Creates a new Command instance using the specified properties.
@@ -8618,8 +8653,8 @@ export namespace mesos {
         /** Properties of a Http. */
         interface IHttp {
 
-            /** Http statusCode */
-            statusCode?: number;
+            /** Http status_code */
+            status_code?: number;
         }
 
         /** Represents a Http. */
@@ -8631,8 +8666,8 @@ export namespace mesos {
              */
             constructor(properties?: mesos.CheckStatusInfo.IHttp);
 
-            /** Http statusCode. */
-            public statusCode: number;
+            /** Http status_code. */
+            public status_code: number;
 
             /**
              * Creates a new Http instance using the specified properties.
@@ -8709,8 +8744,8 @@ export namespace mesos {
     /** Properties of a TaskStatus. */
     interface ITaskStatus {
 
-        /** TaskStatus taskId */
-        taskId: mesos.ITaskID;
+        /** TaskStatus task_id */
+        task_id: mesos.ITaskID;
 
         /** TaskStatus state */
         state: mesos.TaskState;
@@ -8727,11 +8762,11 @@ export namespace mesos {
         /** TaskStatus data */
         data?: Uint8Array;
 
-        /** TaskStatus agentId */
-        agentId?: mesos.IAgentID;
+        /** TaskStatus agent_id */
+        agent_id?: mesos.IAgentID;
 
-        /** TaskStatus executorId */
-        executorId?: mesos.IExecutorID;
+        /** TaskStatus executor_id */
+        executor_id?: mesos.IExecutorID;
 
         /** TaskStatus timestamp */
         timestamp?: number;
@@ -8742,17 +8777,17 @@ export namespace mesos {
         /** TaskStatus healthy */
         healthy?: boolean;
 
-        /** TaskStatus checkStatus */
-        checkStatus?: mesos.ICheckStatusInfo;
+        /** TaskStatus check_status */
+        check_status?: mesos.ICheckStatusInfo;
 
         /** TaskStatus labels */
         labels?: mesos.ILabels;
 
-        /** TaskStatus containerStatus */
-        containerStatus?: mesos.IContainerStatus;
+        /** TaskStatus container_status */
+        container_status?: mesos.IContainerStatus;
 
-        /** TaskStatus unreachableTime */
-        unreachableTime?: mesos.ITimeInfo;
+        /** TaskStatus unreachable_time */
+        unreachable_time?: mesos.ITimeInfo;
     }
 
     /** Describes the current status of a task. */
@@ -8764,8 +8799,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.ITaskStatus);
 
-        /** TaskStatus taskId. */
-        public taskId: mesos.ITaskID;
+        /** TaskStatus task_id. */
+        public task_id: mesos.ITaskID;
 
         /** TaskStatus state. */
         public state: mesos.TaskState;
@@ -8782,11 +8817,11 @@ export namespace mesos {
         /** TaskStatus data. */
         public data: Uint8Array;
 
-        /** TaskStatus agentId. */
-        public agentId?: (mesos.IAgentID|null);
+        /** TaskStatus agent_id. */
+        public agent_id?: (mesos.IAgentID|null);
 
-        /** TaskStatus executorId. */
-        public executorId?: (mesos.IExecutorID|null);
+        /** TaskStatus executor_id. */
+        public executor_id?: (mesos.IExecutorID|null);
 
         /** TaskStatus timestamp. */
         public timestamp: number;
@@ -8797,17 +8832,17 @@ export namespace mesos {
         /** TaskStatus healthy. */
         public healthy: boolean;
 
-        /** TaskStatus checkStatus. */
-        public checkStatus?: (mesos.ICheckStatusInfo|null);
+        /** TaskStatus check_status. */
+        public check_status?: (mesos.ICheckStatusInfo|null);
 
         /** TaskStatus labels. */
         public labels?: (mesos.ILabels|null);
 
-        /** TaskStatus containerStatus. */
-        public containerStatus?: (mesos.IContainerStatus|null);
+        /** TaskStatus container_status. */
+        public container_status?: (mesos.IContainerStatus|null);
 
-        /** TaskStatus unreachableTime. */
-        public unreachableTime?: (mesos.ITimeInfo|null);
+        /** TaskStatus unreachable_time. */
+        public unreachable_time?: (mesos.ITimeInfo|null);
 
         /**
          * Creates a new TaskStatus instance using the specified properties.
@@ -8926,8 +8961,8 @@ export namespace mesos {
     /** Properties of a Filters. */
     interface IFilters {
 
-        /** Filters refuseSeconds */
-        refuseSeconds?: number;
+        /** Filters refuse_seconds */
+        refuse_seconds?: number;
     }
 
     /**
@@ -8942,8 +8977,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.IFilters);
 
-        /** Filters refuseSeconds. */
-        public refuseSeconds: number;
+        /** Filters refuse_seconds. */
+        public refuse_seconds: number;
 
         /**
          * Creates a new Filters instance using the specified properties.
@@ -9705,11 +9740,11 @@ export namespace mesos {
         /** RateLimits limits */
         limits?: mesos.IRateLimit[];
 
-        /** RateLimits aggregateDefaultQps */
-        aggregateDefaultQps?: number;
+        /** RateLimits aggregate_default_qps */
+        aggregate_default_qps?: number;
 
-        /** RateLimits aggregateDefaultCapacity */
-        aggregateDefaultCapacity?: number;
+        /** RateLimits aggregate_default_capacity */
+        aggregate_default_capacity?: number;
     }
 
     /**
@@ -9728,11 +9763,11 @@ export namespace mesos {
         /** RateLimits limits. */
         public limits: mesos.IRateLimit[];
 
-        /** RateLimits aggregateDefaultQps. */
-        public aggregateDefaultQps: number;
+        /** RateLimits aggregate_default_qps. */
+        public aggregate_default_qps: number;
 
-        /** RateLimits aggregateDefaultCapacity. */
-        public aggregateDefaultCapacity: number;
+        /** RateLimits aggregate_default_capacity. */
+        public aggregate_default_capacity: number;
 
         /**
          * Creates a new RateLimits instance using the specified properties.
@@ -10129,11 +10164,11 @@ export namespace mesos {
         /** Volume mode */
         mode: mesos.Volume.Mode;
 
-        /** Volume containerPath */
-        containerPath: string;
+        /** Volume container_path */
+        container_path: string;
 
-        /** Volume hostPath */
-        hostPath?: string;
+        /** Volume host_path */
+        host_path?: string;
 
         /** Volume image */
         image?: mesos.IImage;
@@ -10157,11 +10192,11 @@ export namespace mesos {
         /** Volume mode. */
         public mode: mesos.Volume.Mode;
 
-        /** Volume containerPath. */
-        public containerPath: string;
+        /** Volume container_path. */
+        public container_path: string;
 
-        /** Volume hostPath. */
-        public hostPath: string;
+        /** Volume host_path. */
+        public host_path: string;
 
         /** Volume image. */
         public image?: (mesos.IImage|null);
@@ -10254,11 +10289,11 @@ export namespace mesos {
             /** Source type */
             type?: mesos.Volume.Source.Type;
 
-            /** Source dockerVolume */
-            dockerVolume?: mesos.Volume.Source.IDockerVolume;
+            /** Source docker_volume */
+            docker_volume?: mesos.Volume.Source.IDockerVolume;
 
-            /** Source sandboxPath */
-            sandboxPath?: mesos.Volume.Source.ISandboxPath;
+            /** Source sandbox_path */
+            sandbox_path?: mesos.Volume.Source.ISandboxPath;
         }
 
         /** Represents a Source. */
@@ -10273,11 +10308,11 @@ export namespace mesos {
             /** Source type. */
             public type: mesos.Volume.Source.Type;
 
-            /** Source dockerVolume. */
-            public dockerVolume?: (mesos.Volume.Source.IDockerVolume|null);
+            /** Source docker_volume. */
+            public docker_volume?: (mesos.Volume.Source.IDockerVolume|null);
 
-            /** Source sandboxPath. */
-            public sandboxPath?: (mesos.Volume.Source.ISandboxPath|null);
+            /** Source sandbox_path. */
+            public sandbox_path?: (mesos.Volume.Source.ISandboxPath|null);
 
             /**
              * Creates a new Source instance using the specified properties.
@@ -10368,8 +10403,8 @@ export namespace mesos {
                 /** DockerVolume name */
                 name: string;
 
-                /** DockerVolume driverOptions */
-                driverOptions?: mesos.IParameters;
+                /** DockerVolume driver_options */
+                driver_options?: mesos.IParameters;
             }
 
             /** Represents a DockerVolume. */
@@ -10387,8 +10422,8 @@ export namespace mesos {
                 /** DockerVolume name. */
                 public name: string;
 
-                /** DockerVolume driverOptions. */
-                public driverOptions?: (mesos.IParameters|null);
+                /** DockerVolume driver_options. */
+                public driver_options?: (mesos.IParameters|null);
 
                 /**
                  * Creates a new DockerVolume instance using the specified properties.
@@ -10572,8 +10607,8 @@ export namespace mesos {
     /** Properties of a NetworkInfo. */
     interface INetworkInfo {
 
-        /** NetworkInfo ipAddresses */
-        ipAddresses?: mesos.NetworkInfo.IIPAddress[];
+        /** NetworkInfo ip_addresses */
+        ip_addresses?: mesos.NetworkInfo.IIPAddress[];
 
         /** NetworkInfo name */
         name?: string;
@@ -10584,8 +10619,8 @@ export namespace mesos {
         /** NetworkInfo labels */
         labels?: mesos.ILabels;
 
-        /** NetworkInfo portMappings */
-        portMappings?: mesos.NetworkInfo.IPortMapping[];
+        /** NetworkInfo port_mappings */
+        port_mappings?: mesos.NetworkInfo.IPortMapping[];
     }
 
     /**
@@ -10616,8 +10651,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.INetworkInfo);
 
-        /** NetworkInfo ipAddresses. */
-        public ipAddresses: mesos.NetworkInfo.IIPAddress[];
+        /** NetworkInfo ip_addresses. */
+        public ip_addresses: mesos.NetworkInfo.IIPAddress[];
 
         /** NetworkInfo name. */
         public name: string;
@@ -10628,8 +10663,8 @@ export namespace mesos {
         /** NetworkInfo labels. */
         public labels?: (mesos.ILabels|null);
 
-        /** NetworkInfo portMappings. */
-        public portMappings: mesos.NetworkInfo.IPortMapping[];
+        /** NetworkInfo port_mappings. */
+        public port_mappings: mesos.NetworkInfo.IPortMapping[];
 
         /**
          * Creates a new NetworkInfo instance using the specified properties.
@@ -10716,8 +10751,8 @@ export namespace mesos {
             /** IPAddress protocol */
             protocol?: mesos.NetworkInfo.Protocol;
 
-            /** IPAddress ipAddress */
-            ipAddress?: string;
+            /** IPAddress ip_address */
+            ip_address?: string;
         }
 
         /** Represents a IPAddress. */
@@ -10732,8 +10767,8 @@ export namespace mesos {
             /** IPAddress protocol. */
             public protocol: mesos.NetworkInfo.Protocol;
 
-            /** IPAddress ipAddress. */
-            public ipAddress: string;
+            /** IPAddress ip_address. */
+            public ip_address: string;
 
             /**
              * Creates a new IPAddress instance using the specified properties.
@@ -10809,11 +10844,11 @@ export namespace mesos {
         /** Properties of a PortMapping. */
         interface IPortMapping {
 
-            /** PortMapping hostPort */
-            hostPort: number;
+            /** PortMapping host_port */
+            host_port: number;
 
-            /** PortMapping containerPort */
-            containerPort: number;
+            /** PortMapping container_port */
+            container_port: number;
 
             /** PortMapping protocol */
             protocol?: string;
@@ -10828,11 +10863,11 @@ export namespace mesos {
              */
             constructor(properties?: mesos.NetworkInfo.IPortMapping);
 
-            /** PortMapping hostPort. */
-            public hostPort: number;
+            /** PortMapping host_port. */
+            public host_port: number;
 
-            /** PortMapping containerPort. */
-            public containerPort: number;
+            /** PortMapping container_port. */
+            public container_port: number;
 
             /** PortMapping protocol. */
             public protocol: string;
@@ -11051,8 +11086,8 @@ export namespace mesos {
     /** Properties of a LinuxInfo. */
     interface ILinuxInfo {
 
-        /** LinuxInfo capabilityInfo */
-        capabilityInfo?: mesos.ICapabilityInfo;
+        /** LinuxInfo capability_info */
+        capability_info?: mesos.ICapabilityInfo;
     }
 
     /**
@@ -11067,8 +11102,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.ILinuxInfo);
 
-        /** LinuxInfo capabilityInfo. */
-        public capabilityInfo?: (mesos.ICapabilityInfo|null);
+        /** LinuxInfo capability_info. */
+        public capability_info?: (mesos.ICapabilityInfo|null);
 
         /**
          * Creates a new LinuxInfo instance using the specified properties.
@@ -11369,8 +11404,8 @@ export namespace mesos {
     /** Properties of a TTYInfo. */
     interface ITTYInfo {
 
-        /** TTYInfo windowSize */
-        windowSize?: mesos.TTYInfo.IWindowSize;
+        /** TTYInfo window_size */
+        window_size?: mesos.TTYInfo.IWindowSize;
     }
 
     /**
@@ -11385,8 +11420,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.ITTYInfo);
 
-        /** TTYInfo windowSize. */
-        public windowSize?: (mesos.TTYInfo.IWindowSize|null);
+        /** TTYInfo window_size. */
+        public window_size?: (mesos.TTYInfo.IWindowSize|null);
 
         /**
          * Creates a new TTYInfo instance using the specified properties.
@@ -11576,17 +11611,17 @@ export namespace mesos {
         /** ContainerInfo mesos */
         mesos?: mesos.ContainerInfo.IMesosInfo;
 
-        /** ContainerInfo networkInfos */
-        networkInfos?: mesos.INetworkInfo[];
+        /** ContainerInfo network_infos */
+        network_infos?: mesos.INetworkInfo[];
 
-        /** ContainerInfo linuxInfo */
-        linuxInfo?: mesos.ILinuxInfo;
+        /** ContainerInfo linux_info */
+        linux_info?: mesos.ILinuxInfo;
 
-        /** ContainerInfo rlimitInfo */
-        rlimitInfo?: mesos.IRLimitInfo;
+        /** ContainerInfo rlimit_info */
+        rlimit_info?: mesos.IRLimitInfo;
 
-        /** ContainerInfo ttyInfo */
-        ttyInfo?: mesos.ITTYInfo;
+        /** ContainerInfo tty_info */
+        tty_info?: mesos.ITTYInfo;
     }
 
     /**
@@ -11623,17 +11658,17 @@ export namespace mesos {
         /** ContainerInfo mesos. */
         public mesos?: (mesos.ContainerInfo.IMesosInfo|null);
 
-        /** ContainerInfo networkInfos. */
-        public networkInfos: mesos.INetworkInfo[];
+        /** ContainerInfo network_infos. */
+        public network_infos: mesos.INetworkInfo[];
 
-        /** ContainerInfo linuxInfo. */
-        public linuxInfo?: (mesos.ILinuxInfo|null);
+        /** ContainerInfo linux_info. */
+        public linux_info?: (mesos.ILinuxInfo|null);
 
-        /** ContainerInfo rlimitInfo. */
-        public rlimitInfo?: (mesos.IRLimitInfo|null);
+        /** ContainerInfo rlimit_info. */
+        public rlimit_info?: (mesos.IRLimitInfo|null);
 
-        /** ContainerInfo ttyInfo. */
-        public ttyInfo?: (mesos.ITTYInfo|null);
+        /** ContainerInfo tty_info. */
+        public tty_info?: (mesos.ITTYInfo|null);
 
         /**
          * Creates a new ContainerInfo instance using the specified properties.
@@ -11723,8 +11758,8 @@ export namespace mesos {
             /** DockerInfo network */
             network?: mesos.ContainerInfo.DockerInfo.Network;
 
-            /** DockerInfo portMappings */
-            portMappings?: mesos.ContainerInfo.DockerInfo.IPortMapping[];
+            /** DockerInfo port_mappings */
+            port_mappings?: mesos.ContainerInfo.DockerInfo.IPortMapping[];
 
             /** DockerInfo privileged */
             privileged?: boolean;
@@ -11732,11 +11767,11 @@ export namespace mesos {
             /** DockerInfo parameters */
             parameters?: mesos.IParameter[];
 
-            /** DockerInfo forcePullImage */
-            forcePullImage?: boolean;
+            /** DockerInfo force_pull_image */
+            force_pull_image?: boolean;
 
-            /** DockerInfo volumeDriver */
-            volumeDriver?: string;
+            /** DockerInfo volume_driver */
+            volume_driver?: string;
         }
 
         /** Represents a DockerInfo. */
@@ -11754,8 +11789,8 @@ export namespace mesos {
             /** DockerInfo network. */
             public network: mesos.ContainerInfo.DockerInfo.Network;
 
-            /** DockerInfo portMappings. */
-            public portMappings: mesos.ContainerInfo.DockerInfo.IPortMapping[];
+            /** DockerInfo port_mappings. */
+            public port_mappings: mesos.ContainerInfo.DockerInfo.IPortMapping[];
 
             /** DockerInfo privileged. */
             public privileged: boolean;
@@ -11763,11 +11798,11 @@ export namespace mesos {
             /** DockerInfo parameters. */
             public parameters: mesos.IParameter[];
 
-            /** DockerInfo forcePullImage. */
-            public forcePullImage: boolean;
+            /** DockerInfo force_pull_image. */
+            public force_pull_image: boolean;
 
-            /** DockerInfo volumeDriver. */
-            public volumeDriver: string;
+            /** DockerInfo volume_driver. */
+            public volume_driver: string;
 
             /**
              * Creates a new DockerInfo instance using the specified properties.
@@ -11853,11 +11888,11 @@ export namespace mesos {
             /** Properties of a PortMapping. */
             interface IPortMapping {
 
-                /** PortMapping hostPort */
-                hostPort: number;
+                /** PortMapping host_port */
+                host_port: number;
 
-                /** PortMapping containerPort */
-                containerPort: number;
+                /** PortMapping container_port */
+                container_port: number;
 
                 /** PortMapping protocol */
                 protocol?: string;
@@ -11872,11 +11907,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.ContainerInfo.DockerInfo.IPortMapping);
 
-                /** PortMapping hostPort. */
-                public hostPort: number;
+                /** PortMapping host_port. */
+                public host_port: number;
 
-                /** PortMapping containerPort. */
-                public containerPort: number;
+                /** PortMapping container_port. */
+                public container_port: number;
 
                 /** PortMapping protocol. */
                 public protocol: string;
@@ -12047,17 +12082,17 @@ export namespace mesos {
     /** Properties of a ContainerStatus. */
     interface IContainerStatus {
 
-        /** ContainerStatus containerId */
-        containerId?: mesos.IContainerID;
+        /** ContainerStatus container_id */
+        container_id?: mesos.IContainerID;
 
-        /** ContainerStatus networkInfos */
-        networkInfos?: mesos.INetworkInfo[];
+        /** ContainerStatus network_infos */
+        network_infos?: mesos.INetworkInfo[];
 
-        /** ContainerStatus cgroupInfo */
-        cgroupInfo?: mesos.ICgroupInfo;
+        /** ContainerStatus cgroup_info */
+        cgroup_info?: mesos.ICgroupInfo;
 
-        /** ContainerStatus executorPid */
-        executorPid?: number;
+        /** ContainerStatus executor_pid */
+        executor_pid?: number;
     }
 
     /**
@@ -12073,17 +12108,17 @@ export namespace mesos {
          */
         constructor(properties?: mesos.IContainerStatus);
 
-        /** ContainerStatus containerId. */
-        public containerId?: (mesos.IContainerID|null);
+        /** ContainerStatus container_id. */
+        public container_id?: (mesos.IContainerID|null);
 
-        /** ContainerStatus networkInfos. */
-        public networkInfos: mesos.INetworkInfo[];
+        /** ContainerStatus network_infos. */
+        public network_infos: mesos.INetworkInfo[];
 
-        /** ContainerStatus cgroupInfo. */
-        public cgroupInfo?: (mesos.ICgroupInfo|null);
+        /** ContainerStatus cgroup_info. */
+        public cgroup_info?: (mesos.ICgroupInfo|null);
 
-        /** ContainerStatus executorPid. */
-        public executorPid: number;
+        /** ContainerStatus executor_pid. */
+        public executor_pid: number;
 
         /**
          * Creates a new ContainerStatus instance using the specified properties.
@@ -12159,8 +12194,8 @@ export namespace mesos {
     /** Properties of a CgroupInfo. */
     interface ICgroupInfo {
 
-        /** CgroupInfo netCls */
-        netCls?: mesos.CgroupInfo.INetCls;
+        /** CgroupInfo net_cls */
+        net_cls?: mesos.CgroupInfo.INetCls;
     }
 
     /** Linux control group (cgroup) information. */
@@ -12172,8 +12207,8 @@ export namespace mesos {
          */
         constructor(properties?: mesos.ICgroupInfo);
 
-        /** CgroupInfo netCls. */
-        public netCls?: (mesos.CgroupInfo.INetCls|null);
+        /** CgroupInfo net_cls. */
+        public net_cls?: (mesos.CgroupInfo.INetCls|null);
 
         /**
          * Creates a new CgroupInfo instance using the specified properties.
@@ -12986,23 +13021,23 @@ export namespace mesos {
         /** VersionInfo version */
         version: string;
 
-        /** VersionInfo buildDate */
-        buildDate?: string;
+        /** VersionInfo build_date */
+        build_date?: string;
 
-        /** VersionInfo buildTime */
-        buildTime?: number;
+        /** VersionInfo build_time */
+        build_time?: number;
 
-        /** VersionInfo buildUser */
-        buildUser?: string;
+        /** VersionInfo build_user */
+        build_user?: string;
 
-        /** VersionInfo gitSha */
-        gitSha?: string;
+        /** VersionInfo git_sha */
+        git_sha?: string;
 
-        /** VersionInfo gitBranch */
-        gitBranch?: string;
+        /** VersionInfo git_branch */
+        git_branch?: string;
 
-        /** VersionInfo gitTag */
-        gitTag?: string;
+        /** VersionInfo git_tag */
+        git_tag?: string;
     }
 
     /** Version information of a component. */
@@ -13017,23 +13052,23 @@ export namespace mesos {
         /** VersionInfo version. */
         public version: string;
 
-        /** VersionInfo buildDate. */
-        public buildDate: string;
+        /** VersionInfo build_date. */
+        public build_date: string;
 
-        /** VersionInfo buildTime. */
-        public buildTime: number;
+        /** VersionInfo build_time. */
+        public build_time: number;
 
-        /** VersionInfo buildUser. */
-        public buildUser: string;
+        /** VersionInfo build_user. */
+        public build_user: string;
 
-        /** VersionInfo gitSha. */
-        public gitSha: string;
+        /** VersionInfo git_sha. */
+        public git_sha: string;
 
-        /** VersionInfo gitBranch. */
-        public gitBranch: string;
+        /** VersionInfo git_branch. */
+        public git_branch: string;
 
-        /** VersionInfo gitTag. */
-        public gitTag: string;
+        /** VersionInfo git_tag. */
+        public git_tag: string;
 
         /**
          * Creates a new VersionInfo instance using the specified properties.
@@ -13550,14 +13585,14 @@ export namespace mesos {
             /** Event offers */
             offers?: mesos.scheduler.Event.IOffers;
 
-            /** Event inverseOffers */
-            inverseOffers?: mesos.scheduler.Event.IInverseOffers;
+            /** Event inverse_offers */
+            inverse_offers?: mesos.scheduler.Event.IInverseOffers;
 
             /** Event rescind */
             rescind?: mesos.scheduler.Event.IRescind;
 
-            /** Event rescindInverseOffer */
-            rescindInverseOffer?: mesos.scheduler.Event.IRescindInverseOffer;
+            /** Event rescind_inverse_offer */
+            rescind_inverse_offer?: mesos.scheduler.Event.IRescindInverseOffer;
 
             /** Event update */
             update?: mesos.scheduler.Event.IUpdate;
@@ -13596,14 +13631,14 @@ export namespace mesos {
             /** Event offers. */
             public offers?: (mesos.scheduler.Event.IOffers|null);
 
-            /** Event inverseOffers. */
-            public inverseOffers?: (mesos.scheduler.Event.IInverseOffers|null);
+            /** Event inverse_offers. */
+            public inverse_offers?: (mesos.scheduler.Event.IInverseOffers|null);
 
             /** Event rescind. */
             public rescind?: (mesos.scheduler.Event.IRescind|null);
 
-            /** Event rescindInverseOffer. */
-            public rescindInverseOffer?: (mesos.scheduler.Event.IRescindInverseOffer|null);
+            /** Event rescind_inverse_offer. */
+            public rescind_inverse_offer?: (mesos.scheduler.Event.IRescindInverseOffer|null);
 
             /** Event update. */
             public update?: (mesos.scheduler.Event.IUpdate|null);
@@ -13708,14 +13743,14 @@ export namespace mesos {
             /** Properties of a Subscribed. */
             interface ISubscribed {
 
-                /** Subscribed frameworkId */
-                frameworkId: mesos.IFrameworkID;
+                /** Subscribed framework_id */
+                framework_id: mesos.IFrameworkID;
 
-                /** Subscribed heartbeatIntervalSeconds */
-                heartbeatIntervalSeconds?: number;
+                /** Subscribed heartbeat_interval_seconds */
+                heartbeat_interval_seconds?: number;
 
-                /** Subscribed masterInfo */
-                masterInfo?: mesos.IMasterInfo;
+                /** Subscribed master_info */
+                master_info?: mesos.IMasterInfo;
             }
 
             /** Represents a Subscribed. */
@@ -13727,14 +13762,14 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Event.ISubscribed);
 
-                /** Subscribed frameworkId. */
-                public frameworkId: mesos.IFrameworkID;
+                /** Subscribed framework_id. */
+                public framework_id: mesos.IFrameworkID;
 
-                /** Subscribed heartbeatIntervalSeconds. */
-                public heartbeatIntervalSeconds: number;
+                /** Subscribed heartbeat_interval_seconds. */
+                public heartbeat_interval_seconds: number;
 
-                /** Subscribed masterInfo. */
-                public masterInfo?: (mesos.IMasterInfo|null);
+                /** Subscribed master_info. */
+                public master_info?: (mesos.IMasterInfo|null);
 
                 /**
                  * Creates a new Subscribed instance using the specified properties.
@@ -13900,8 +13935,8 @@ export namespace mesos {
             /** Properties of an InverseOffers. */
             interface IInverseOffers {
 
-                /** InverseOffers inverseOffers */
-                inverseOffers?: mesos.IInverseOffer[];
+                /** InverseOffers inverse_offers */
+                inverse_offers?: mesos.IInverseOffer[];
             }
 
             /** Represents an InverseOffers. */
@@ -13913,8 +13948,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Event.IInverseOffers);
 
-                /** InverseOffers inverseOffers. */
-                public inverseOffers: mesos.IInverseOffer[];
+                /** InverseOffers inverse_offers. */
+                public inverse_offers: mesos.IInverseOffer[];
 
                 /**
                  * Creates a new InverseOffers instance using the specified properties.
@@ -13990,8 +14025,8 @@ export namespace mesos {
             /** Properties of a Rescind. */
             interface IRescind {
 
-                /** Rescind offerId */
-                offerId: mesos.IOfferID;
+                /** Rescind offer_id */
+                offer_id: mesos.IOfferID;
             }
 
             /** Represents a Rescind. */
@@ -14003,8 +14038,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Event.IRescind);
 
-                /** Rescind offerId. */
-                public offerId: mesos.IOfferID;
+                /** Rescind offer_id. */
+                public offer_id: mesos.IOfferID;
 
                 /**
                  * Creates a new Rescind instance using the specified properties.
@@ -14080,8 +14115,8 @@ export namespace mesos {
             /** Properties of a RescindInverseOffer. */
             interface IRescindInverseOffer {
 
-                /** RescindInverseOffer inverseOfferId */
-                inverseOfferId: mesos.IOfferID;
+                /** RescindInverseOffer inverse_offer_id */
+                inverse_offer_id: mesos.IOfferID;
             }
 
             /** Represents a RescindInverseOffer. */
@@ -14093,8 +14128,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Event.IRescindInverseOffer);
 
-                /** RescindInverseOffer inverseOfferId. */
-                public inverseOfferId: mesos.IOfferID;
+                /** RescindInverseOffer inverse_offer_id. */
+                public inverse_offer_id: mesos.IOfferID;
 
                 /**
                  * Creates a new RescindInverseOffer instance using the specified properties.
@@ -14260,11 +14295,11 @@ export namespace mesos {
             /** Properties of a Message. */
             interface IMessage {
 
-                /** Message agentId */
-                agentId: mesos.IAgentID;
+                /** Message agent_id */
+                agent_id: mesos.IAgentID;
 
-                /** Message executorId */
-                executorId: mesos.IExecutorID;
+                /** Message executor_id */
+                executor_id: mesos.IExecutorID;
 
                 /** Message data */
                 data: Uint8Array;
@@ -14279,11 +14314,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Event.IMessage);
 
-                /** Message agentId. */
-                public agentId: mesos.IAgentID;
+                /** Message agent_id. */
+                public agent_id: mesos.IAgentID;
 
-                /** Message executorId. */
-                public executorId: mesos.IExecutorID;
+                /** Message executor_id. */
+                public executor_id: mesos.IExecutorID;
 
                 /** Message data. */
                 public data: Uint8Array;
@@ -14362,11 +14397,11 @@ export namespace mesos {
             /** Properties of a Failure. */
             interface IFailure {
 
-                /** Failure agentId */
-                agentId?: mesos.IAgentID;
+                /** Failure agent_id */
+                agent_id?: mesos.IAgentID;
 
-                /** Failure executorId */
-                executorId?: mesos.IExecutorID;
+                /** Failure executor_id */
+                executor_id?: mesos.IExecutorID;
 
                 /** Failure status */
                 status?: number;
@@ -14381,11 +14416,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Event.IFailure);
 
-                /** Failure agentId. */
-                public agentId?: (mesos.IAgentID|null);
+                /** Failure agent_id. */
+                public agent_id?: (mesos.IAgentID|null);
 
-                /** Failure executorId. */
-                public executorId?: (mesos.IExecutorID|null);
+                /** Failure executor_id. */
+                public executor_id?: (mesos.IExecutorID|null);
 
                 /** Failure status. */
                 public status: number;
@@ -14555,8 +14590,8 @@ export namespace mesos {
         /** Properties of a Call. */
         interface ICall {
 
-            /** Call frameworkId */
-            frameworkId?: mesos.IFrameworkID;
+            /** Call framework_id */
+            framework_id?: mesos.IFrameworkID;
 
             /** Call type */
             type?: mesos.scheduler.Call.Type;
@@ -14570,11 +14605,11 @@ export namespace mesos {
             /** Call decline */
             decline?: mesos.scheduler.Call.IDecline;
 
-            /** Call acceptInverseOffers */
-            acceptInverseOffers?: mesos.scheduler.Call.IAcceptInverseOffers;
+            /** Call accept_inverse_offers */
+            accept_inverse_offers?: mesos.scheduler.Call.IAcceptInverseOffers;
 
-            /** Call declineInverseOffers */
-            declineInverseOffers?: mesos.scheduler.Call.IDeclineInverseOffers;
+            /** Call decline_inverse_offers */
+            decline_inverse_offers?: mesos.scheduler.Call.IDeclineInverseOffers;
 
             /** Call revive */
             revive?: mesos.scheduler.Call.IRevive;
@@ -14615,8 +14650,8 @@ export namespace mesos {
              */
             constructor(properties?: mesos.scheduler.ICall);
 
-            /** Call frameworkId. */
-            public frameworkId?: (mesos.IFrameworkID|null);
+            /** Call framework_id. */
+            public framework_id?: (mesos.IFrameworkID|null);
 
             /** Call type. */
             public type: mesos.scheduler.Call.Type;
@@ -14630,11 +14665,11 @@ export namespace mesos {
             /** Call decline. */
             public decline?: (mesos.scheduler.Call.IDecline|null);
 
-            /** Call acceptInverseOffers. */
-            public acceptInverseOffers?: (mesos.scheduler.Call.IAcceptInverseOffers|null);
+            /** Call accept_inverse_offers. */
+            public accept_inverse_offers?: (mesos.scheduler.Call.IAcceptInverseOffers|null);
 
-            /** Call declineInverseOffers. */
-            public declineInverseOffers?: (mesos.scheduler.Call.IDeclineInverseOffers|null);
+            /** Call decline_inverse_offers. */
+            public decline_inverse_offers?: (mesos.scheduler.Call.IDeclineInverseOffers|null);
 
             /** Call revive. */
             public revive?: (mesos.scheduler.Call.IRevive|null);
@@ -14755,8 +14790,8 @@ export namespace mesos {
             /** Properties of a Subscribe. */
             interface ISubscribe {
 
-                /** Subscribe frameworkInfo */
-                frameworkInfo: mesos.IFrameworkInfo;
+                /** Subscribe framework_info */
+                framework_info: mesos.IFrameworkInfo;
             }
 
             /** Represents a Subscribe. */
@@ -14768,8 +14803,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.ISubscribe);
 
-                /** Subscribe frameworkInfo. */
-                public frameworkInfo: mesos.IFrameworkInfo;
+                /** Subscribe framework_info. */
+                public framework_info: mesos.IFrameworkInfo;
 
                 /**
                  * Creates a new Subscribe instance using the specified properties.
@@ -14845,8 +14880,8 @@ export namespace mesos {
             /** Properties of an Accept. */
             interface IAccept {
 
-                /** Accept offerIds */
-                offerIds?: mesos.IOfferID[];
+                /** Accept offer_ids */
+                offer_ids?: mesos.IOfferID[];
 
                 /** Accept operations */
                 operations?: mesos.Offer.IOperation[];
@@ -14864,8 +14899,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IAccept);
 
-                /** Accept offerIds. */
-                public offerIds: mesos.IOfferID[];
+                /** Accept offer_ids. */
+                public offer_ids: mesos.IOfferID[];
 
                 /** Accept operations. */
                 public operations: mesos.Offer.IOperation[];
@@ -14947,8 +14982,8 @@ export namespace mesos {
             /** Properties of a Decline. */
             interface IDecline {
 
-                /** Decline offerIds */
-                offerIds?: mesos.IOfferID[];
+                /** Decline offer_ids */
+                offer_ids?: mesos.IOfferID[];
 
                 /** Decline filters */
                 filters?: mesos.IFilters;
@@ -14963,8 +14998,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IDecline);
 
-                /** Decline offerIds. */
-                public offerIds: mesos.IOfferID[];
+                /** Decline offer_ids. */
+                public offer_ids: mesos.IOfferID[];
 
                 /** Decline filters. */
                 public filters?: (mesos.IFilters|null);
@@ -15043,8 +15078,8 @@ export namespace mesos {
             /** Properties of an AcceptInverseOffers. */
             interface IAcceptInverseOffers {
 
-                /** AcceptInverseOffers inverseOfferIds */
-                inverseOfferIds?: mesos.IOfferID[];
+                /** AcceptInverseOffers inverse_offer_ids */
+                inverse_offer_ids?: mesos.IOfferID[];
 
                 /** AcceptInverseOffers filters */
                 filters?: mesos.IFilters;
@@ -15059,8 +15094,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IAcceptInverseOffers);
 
-                /** AcceptInverseOffers inverseOfferIds. */
-                public inverseOfferIds: mesos.IOfferID[];
+                /** AcceptInverseOffers inverse_offer_ids. */
+                public inverse_offer_ids: mesos.IOfferID[];
 
                 /** AcceptInverseOffers filters. */
                 public filters?: (mesos.IFilters|null);
@@ -15139,8 +15174,8 @@ export namespace mesos {
             /** Properties of a DeclineInverseOffers. */
             interface IDeclineInverseOffers {
 
-                /** DeclineInverseOffers inverseOfferIds */
-                inverseOfferIds?: mesos.IOfferID[];
+                /** DeclineInverseOffers inverse_offer_ids */
+                inverse_offer_ids?: mesos.IOfferID[];
 
                 /** DeclineInverseOffers filters */
                 filters?: mesos.IFilters;
@@ -15155,8 +15190,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IDeclineInverseOffers);
 
-                /** DeclineInverseOffers inverseOfferIds. */
-                public inverseOfferIds: mesos.IOfferID[];
+                /** DeclineInverseOffers inverse_offer_ids. */
+                public inverse_offer_ids: mesos.IOfferID[];
 
                 /** DeclineInverseOffers filters. */
                 public filters?: (mesos.IFilters|null);
@@ -15325,14 +15360,14 @@ export namespace mesos {
             /** Properties of a Kill. */
             interface IKill {
 
-                /** Kill taskId */
-                taskId: mesos.ITaskID;
+                /** Kill task_id */
+                task_id: mesos.ITaskID;
 
-                /** Kill agentId */
-                agentId?: mesos.IAgentID;
+                /** Kill agent_id */
+                agent_id?: mesos.IAgentID;
 
-                /** Kill killPolicy */
-                killPolicy?: mesos.IKillPolicy;
+                /** Kill kill_policy */
+                kill_policy?: mesos.IKillPolicy;
             }
 
             /** Represents a Kill. */
@@ -15344,14 +15379,14 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IKill);
 
-                /** Kill taskId. */
-                public taskId: mesos.ITaskID;
+                /** Kill task_id. */
+                public task_id: mesos.ITaskID;
 
-                /** Kill agentId. */
-                public agentId?: (mesos.IAgentID|null);
+                /** Kill agent_id. */
+                public agent_id?: (mesos.IAgentID|null);
 
-                /** Kill killPolicy. */
-                public killPolicy?: (mesos.IKillPolicy|null);
+                /** Kill kill_policy. */
+                public kill_policy?: (mesos.IKillPolicy|null);
 
                 /**
                  * Creates a new Kill instance using the specified properties.
@@ -15427,11 +15462,11 @@ export namespace mesos {
             /** Properties of a Shutdown. */
             interface IShutdown {
 
-                /** Shutdown executorId */
-                executorId: mesos.IExecutorID;
+                /** Shutdown executor_id */
+                executor_id: mesos.IExecutorID;
 
-                /** Shutdown agentId */
-                agentId: mesos.IAgentID;
+                /** Shutdown agent_id */
+                agent_id: mesos.IAgentID;
             }
 
             /** Represents a Shutdown. */
@@ -15443,11 +15478,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IShutdown);
 
-                /** Shutdown executorId. */
-                public executorId: mesos.IExecutorID;
+                /** Shutdown executor_id. */
+                public executor_id: mesos.IExecutorID;
 
-                /** Shutdown agentId. */
-                public agentId: mesos.IAgentID;
+                /** Shutdown agent_id. */
+                public agent_id: mesos.IAgentID;
 
                 /**
                  * Creates a new Shutdown instance using the specified properties.
@@ -15523,11 +15558,11 @@ export namespace mesos {
             /** Properties of an Acknowledge. */
             interface IAcknowledge {
 
-                /** Acknowledge agentId */
-                agentId: mesos.IAgentID;
+                /** Acknowledge agent_id */
+                agent_id: mesos.IAgentID;
 
-                /** Acknowledge taskId */
-                taskId: mesos.ITaskID;
+                /** Acknowledge task_id */
+                task_id: mesos.ITaskID;
 
                 /** Acknowledge uuid */
                 uuid: Uint8Array;
@@ -15542,11 +15577,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IAcknowledge);
 
-                /** Acknowledge agentId. */
-                public agentId: mesos.IAgentID;
+                /** Acknowledge agent_id. */
+                public agent_id: mesos.IAgentID;
 
-                /** Acknowledge taskId. */
-                public taskId: mesos.ITaskID;
+                /** Acknowledge task_id. */
+                public task_id: mesos.ITaskID;
 
                 /** Acknowledge uuid. */
                 public uuid: Uint8Array;
@@ -15717,11 +15752,11 @@ export namespace mesos {
                 /** Properties of a Task. */
                 interface ITask {
 
-                    /** Task taskId */
-                    taskId: mesos.ITaskID;
+                    /** Task task_id */
+                    task_id: mesos.ITaskID;
 
-                    /** Task agentId */
-                    agentId?: mesos.IAgentID;
+                    /** Task agent_id */
+                    agent_id?: mesos.IAgentID;
                 }
 
                 /** Represents a Task. */
@@ -15733,11 +15768,11 @@ export namespace mesos {
                      */
                     constructor(properties?: mesos.scheduler.Call.Reconcile.ITask);
 
-                    /** Task taskId. */
-                    public taskId: mesos.ITaskID;
+                    /** Task task_id. */
+                    public task_id: mesos.ITaskID;
 
-                    /** Task agentId. */
-                    public agentId?: (mesos.IAgentID|null);
+                    /** Task agent_id. */
+                    public agent_id?: (mesos.IAgentID|null);
 
                     /**
                      * Creates a new Task instance using the specified properties.
@@ -15814,11 +15849,11 @@ export namespace mesos {
             /** Properties of a Message. */
             interface IMessage {
 
-                /** Message agentId */
-                agentId: mesos.IAgentID;
+                /** Message agent_id */
+                agent_id: mesos.IAgentID;
 
-                /** Message executorId */
-                executorId: mesos.IExecutorID;
+                /** Message executor_id */
+                executor_id: mesos.IExecutorID;
 
                 /** Message data */
                 data: Uint8Array;
@@ -15833,11 +15868,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.scheduler.Call.IMessage);
 
-                /** Message agentId. */
-                public agentId: mesos.IAgentID;
+                /** Message agent_id. */
+                public agent_id: mesos.IAgentID;
 
-                /** Message executorId. */
-                public executorId: mesos.IExecutorID;
+                /** Message executor_id. */
+                public executor_id: mesos.IExecutorID;
 
                 /** Message data. */
                 public data: Uint8Array;
@@ -16113,8 +16148,8 @@ export namespace mesos {
             /** Event launch */
             launch?: mesos.executor.Event.ILaunch;
 
-            /** Event launchGroup */
-            launchGroup?: mesos.executor.Event.ILaunchGroup;
+            /** Event launch_group */
+            launch_group?: mesos.executor.Event.ILaunchGroup;
 
             /** Event kill */
             kill?: mesos.executor.Event.IKill;
@@ -16152,8 +16187,8 @@ export namespace mesos {
             /** Event launch. */
             public launch?: (mesos.executor.Event.ILaunch|null);
 
-            /** Event launchGroup. */
-            public launchGroup?: (mesos.executor.Event.ILaunchGroup|null);
+            /** Event launch_group. */
+            public launch_group?: (mesos.executor.Event.ILaunchGroup|null);
 
             /** Event kill. */
             public kill?: (mesos.executor.Event.IKill|null);
@@ -16253,17 +16288,17 @@ export namespace mesos {
             /** Properties of a Subscribed. */
             interface ISubscribed {
 
-                /** Subscribed executorInfo */
-                executorInfo: mesos.IExecutorInfo;
+                /** Subscribed executor_info */
+                executor_info: mesos.IExecutorInfo;
 
-                /** Subscribed frameworkInfo */
-                frameworkInfo: mesos.IFrameworkInfo;
+                /** Subscribed framework_info */
+                framework_info: mesos.IFrameworkInfo;
 
-                /** Subscribed agentInfo */
-                agentInfo: mesos.IAgentInfo;
+                /** Subscribed agent_info */
+                agent_info: mesos.IAgentInfo;
 
-                /** Subscribed containerId */
-                containerId?: mesos.IContainerID;
+                /** Subscribed container_id */
+                container_id?: mesos.IContainerID;
             }
 
             /** Represents a Subscribed. */
@@ -16275,17 +16310,17 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.executor.Event.ISubscribed);
 
-                /** Subscribed executorInfo. */
-                public executorInfo: mesos.IExecutorInfo;
+                /** Subscribed executor_info. */
+                public executor_info: mesos.IExecutorInfo;
 
-                /** Subscribed frameworkInfo. */
-                public frameworkInfo: mesos.IFrameworkInfo;
+                /** Subscribed framework_info. */
+                public framework_info: mesos.IFrameworkInfo;
 
-                /** Subscribed agentInfo. */
-                public agentInfo: mesos.IAgentInfo;
+                /** Subscribed agent_info. */
+                public agent_info: mesos.IAgentInfo;
 
-                /** Subscribed containerId. */
-                public containerId?: (mesos.IContainerID|null);
+                /** Subscribed container_id. */
+                public container_id?: (mesos.IContainerID|null);
 
                 /**
                  * Creates a new Subscribed instance using the specified properties.
@@ -16451,8 +16486,8 @@ export namespace mesos {
             /** Properties of a LaunchGroup. */
             interface ILaunchGroup {
 
-                /** LaunchGroup taskGroup */
-                taskGroup: mesos.ITaskGroupInfo;
+                /** LaunchGroup task_group */
+                task_group: mesos.ITaskGroupInfo;
             }
 
             /** Represents a LaunchGroup. */
@@ -16464,8 +16499,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.executor.Event.ILaunchGroup);
 
-                /** LaunchGroup taskGroup. */
-                public taskGroup: mesos.ITaskGroupInfo;
+                /** LaunchGroup task_group. */
+                public task_group: mesos.ITaskGroupInfo;
 
                 /**
                  * Creates a new LaunchGroup instance using the specified properties.
@@ -16541,11 +16576,11 @@ export namespace mesos {
             /** Properties of a Kill. */
             interface IKill {
 
-                /** Kill taskId */
-                taskId: mesos.ITaskID;
+                /** Kill task_id */
+                task_id: mesos.ITaskID;
 
-                /** Kill killPolicy */
-                killPolicy?: mesos.IKillPolicy;
+                /** Kill kill_policy */
+                kill_policy?: mesos.IKillPolicy;
             }
 
             /** Represents a Kill. */
@@ -16557,11 +16592,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.executor.Event.IKill);
 
-                /** Kill taskId. */
-                public taskId: mesos.ITaskID;
+                /** Kill task_id. */
+                public task_id: mesos.ITaskID;
 
-                /** Kill killPolicy. */
-                public killPolicy?: (mesos.IKillPolicy|null);
+                /** Kill kill_policy. */
+                public kill_policy?: (mesos.IKillPolicy|null);
 
                 /**
                  * Creates a new Kill instance using the specified properties.
@@ -16637,8 +16672,8 @@ export namespace mesos {
             /** Properties of an Acknowledged. */
             interface IAcknowledged {
 
-                /** Acknowledged taskId */
-                taskId: mesos.ITaskID;
+                /** Acknowledged task_id */
+                task_id: mesos.ITaskID;
 
                 /** Acknowledged uuid */
                 uuid: Uint8Array;
@@ -16653,8 +16688,8 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.executor.Event.IAcknowledged);
 
-                /** Acknowledged taskId. */
-                public taskId: mesos.ITaskID;
+                /** Acknowledged task_id. */
+                public task_id: mesos.ITaskID;
 
                 /** Acknowledged uuid. */
                 public uuid: Uint8Array;
@@ -16914,11 +16949,11 @@ export namespace mesos {
         /** Properties of a Call. */
         interface ICall {
 
-            /** Call executorId */
-            executorId: mesos.IExecutorID;
+            /** Call executor_id */
+            executor_id: mesos.IExecutorID;
 
-            /** Call frameworkId */
-            frameworkId: mesos.IFrameworkID;
+            /** Call framework_id */
+            framework_id: mesos.IFrameworkID;
 
             /** Call type */
             type?: mesos.executor.Call.Type;
@@ -16947,11 +16982,11 @@ export namespace mesos {
              */
             constructor(properties?: mesos.executor.ICall);
 
-            /** Call executorId. */
-            public executorId: mesos.IExecutorID;
+            /** Call executor_id. */
+            public executor_id: mesos.IExecutorID;
 
-            /** Call frameworkId. */
-            public frameworkId: mesos.IFrameworkID;
+            /** Call framework_id. */
+            public framework_id: mesos.IFrameworkID;
 
             /** Call type. */
             public type: mesos.executor.Call.Type;
@@ -17049,11 +17084,11 @@ export namespace mesos {
             /** Properties of a Subscribe. */
             interface ISubscribe {
 
-                /** Subscribe unacknowledgedTasks */
-                unacknowledgedTasks?: mesos.ITaskInfo[];
+                /** Subscribe unacknowledged_tasks */
+                unacknowledged_tasks?: mesos.ITaskInfo[];
 
-                /** Subscribe unacknowledgedUpdates */
-                unacknowledgedUpdates?: mesos.executor.Call.IUpdate[];
+                /** Subscribe unacknowledged_updates */
+                unacknowledged_updates?: mesos.executor.Call.IUpdate[];
             }
 
             /** Represents a Subscribe. */
@@ -17065,11 +17100,11 @@ export namespace mesos {
                  */
                 constructor(properties?: mesos.executor.Call.ISubscribe);
 
-                /** Subscribe unacknowledgedTasks. */
-                public unacknowledgedTasks: mesos.ITaskInfo[];
+                /** Subscribe unacknowledged_tasks. */
+                public unacknowledged_tasks: mesos.ITaskInfo[];
 
-                /** Subscribe unacknowledgedUpdates. */
-                public unacknowledgedUpdates: mesos.executor.Call.IUpdate[];
+                /** Subscribe unacknowledged_updates. */
+                public unacknowledged_updates: mesos.executor.Call.IUpdate[];
 
                 /**
                  * Creates a new Subscribe instance using the specified properties.
