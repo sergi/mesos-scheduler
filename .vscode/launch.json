@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch",
+      "preLaunchTask": "build-ts",
+      "sourceMaps": true,
+      "stopOnEntry": true,
+      "console": "internalConsole",
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/index.ts",
+      "outFiles": ["${workspaceRoot}/dist/*.js"],
+      "env": {
+        "DEBUG": "SimpleScheduler:*"
+      }
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Process",
+      "port": 5858,
+      "outFiles": []
+    }
+  ]
+}
