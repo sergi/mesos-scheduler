@@ -28,7 +28,7 @@ const defaultOptions: Config = {
   hostname: hostname(),
   webui_url: `http://${hostname()}:${DEFAULT_PORT}`,
   checkpoint: true,
-  port: 9090,
+  port: DEFAULT_PORT,
   stateFile: join(tmpdir(), "state.json"),
   frameworkInfoFile: join(tmpdir(), "framework.json")
 };
@@ -43,36 +43,59 @@ class SimpleScheduler {
   options: Config;
 
   constructor(options = {}) {
+    // Take user options, falling back to default ones.
     this.options = { ...defaultOptions, ...options };
-    this.setFrameworkInfo(this.options, () => {
-      this.subscribe();
+    this.setFrameworkInfo(this.options, err => {
+      this.subscribe(err => {
+        if (err) {
+          return console.error("ERROR: Problem with subscription");
+        }
+      });
       this.startServer();
     });
   }
 
-  setFrameworkInfo(opts, callback) {
-    readFile(opts.frameworkInfoFile, (err, buf) => {
+  /**
+   * Tries to set Framework Info from file defined in options.frameworkInfoFile.
+   * If the file is not available, get information from the Scheduler options.
+   *
+   * @param {Config} options Scheduler options
+   * @param {Function} callback - The callback that signals that Framework Info is set
+   */
+  setFrameworkInfo(options: Config, callback) {
+    readFile(options.frameworkInfoFile, (err, buf) => {
       if (err) {
         this.frameworkInfo = new mesos.FrameworkInfo({
-          user: opts.user,
-          name: opts.name,
-          failover_timeout: opts.failover_timeout,
-          checkpoint: opts.checkpoint,
-          hostname: opts.hostname,
-          webui_url: opts.webui_url
+          user: options.user,
+          name: options.name,
+          failover_timeout: options.failover_timeout,
+          checkpoint: options.checkpoint,
+          hostname: options.hostname,
+          webui_url: options.webui_url
         });
       } else {
-        this.frameworkInfo = new mesos.FrameworkInfo(
-          JSON.parse(buf.toString())
-        );
+        let parsedFI;
+        try {
+          parsedFI = JSON.parse(buf.toString());
+        } catch (e) {
+          return callback(err);
+        }
+        this.frameworkInfo = new mesos.FrameworkInfo(parsedFI);
       }
       callback();
     });
   }
 
-  kill(id, cb) {
+  /**
+   * Sends the call to kill a specific task.
+   * https://mesos.apache.org/documentation/latest/scheduler-http-api/#kill
+   *
+   * @param {string} id Task ID
+   * @param {Function} callback - The callback that signals that Framework Info is set
+   */
+  kill(id: string, callback) {
     if (!this.tasksState[id]) {
-      return cb(new Error(`Unknown task ${id}`));
+      return callback(new Error(`Unknown task ${id}`));
     }
 
     const update = this.tasksState[id];
@@ -86,10 +109,10 @@ class SimpleScheduler {
       })
     });
 
-    return this.call(killCall);
+    return this.call(killCall, callback);
   }
 
-  subscribe() {
+  subscribe(callback) {
     const subscribeCall = new Call({
       framework_id: this.frameworkInfo.id,
       type: Call.Type.SUBSCRIBE,
@@ -97,91 +120,85 @@ class SimpleScheduler {
         framework_info: this.frameworkInfo
       })
     });
+
     const subscribeCallString = JSON.stringify(subscribeCall.toJSON());
-    const options = {
-      hostname: this.options.hostname,
-      port: 5050,
-      path: ENDPOINT_PATH,
-      method: "POST",
-      headers: {
+
+    this.mesosRequest(
+      subscribeCall,
+      {
         "Content-Type": "application/json",
         "Content-Length": subscribeCallString.length
-      }
-    };
+      },
+      parseChunk,
+      callback
+    );
 
-    const req = request(options, res => {
-      log(`STATUS: ${res.statusCode}`);
-      log(`HEADERS: ${JSON.stringify(res.headers)}`);
+    const self = this;
+    function parseChunk(res, body) {
+      const lines = body.split("\n");
+      let bytesCount = parseInt(lines.shift(), 10);
 
-      res.setEncoding("utf8");
-      res.on("data", parseChunk);
-      res.on("end", () => {
-        log("No more data in response.");
-      });
+      // Terrible parser alert
+      while (true) {
+        const line = lines.shift();
+        const data = JSON.parse(line.substring(0, bytesCount));
+        bytesCount = parseInt(line.substring(bytesCount), 10);
 
-      const self = this;
-      function parseChunk(body) {
-        const lines = body.split("\n");
-        let bytesCount = parseInt(lines.shift(), 10);
+        // Do not handle events, just log them
+        log("Received", JSON.stringify(data));
 
-        // Terrible parser alert
-        while (true) {
-          const line = lines.shift();
-          const data = JSON.parse(line.substring(0, bytesCount));
-          bytesCount = parseInt(line.substring(bytesCount), 10);
+        const parsedEvent = new Event(data).toJSON();
+        log(`Received event ${JSON.stringify(parsedEvent)}`);
 
-          // Do not handle events, just log them
-          log("Received", JSON.stringify(data));
-
-          const parsedEvent = new Event(data).toJSON();
-          log(`Received event ${JSON.stringify(parsedEvent)}`);
-
-          switch (parsedEvent.type) {
-            case Event.Type.SUBSCRIBED:
-              log("Subscribed");
-              self.frameworkInfo.id = parsedEvent.subscribed.framework_id;
-              self.mesosStreamId = <string>res.headers["mesos-stream-id"];
-              writeFileSync(
-                self.options.frameworkInfoFile,
-                JSON.stringify(self.frameworkInfo),
-                {
-                  mode: 0o644
-                }
-              );
-              self.reconcile();
-              break;
-            case Event.Type.HEARTBEAT:
-              log("PING");
-              break;
-            case Event.Type.OFFERS:
-              log(
-                `Handle offers returns: ${self.handleOffers(
-                  parsedEvent.offers
-                )}`
-              );
-              break;
-            case Event.Type.UPDATE:
-              log(
-                `Handle update returns: ${self.handleUpdate(
-                  parsedEvent.update
-                )}`
-              );
-              break;
-          }
-          if (isNaN(bytesCount) || bytesCount === 0) {
+        switch (parsedEvent.type) {
+          case Event.Type.SUBSCRIBED:
+            log("Subscribed");
+            self.frameworkInfo.id = parsedEvent.subscribed.framework_id;
+            self.mesosStreamId = <string>res.headers["mesos-stream-id"];
+            writeFileSync(
+              self.options.frameworkInfoFile,
+              JSON.stringify(self.frameworkInfo),
+              {
+                mode: 0o644
+              }
+            );
+            self.reconcile(callback);
             break;
-          }
+          case Event.Type.HEARTBEAT:
+            log("PING");
+            break;
+          case Event.Type.OFFERS:
+            log(
+              `Handle offers returns: ${self.handleOffers(
+                parsedEvent.offers,
+                callback
+              )}`
+            );
+            break;
+          case Event.Type.UPDATE:
+            log(
+              `Handle update returns: ${self.handleUpdate(
+                parsedEvent.update,
+                callback
+              )}`
+            );
+            break;
+        }
+        if (isNaN(bytesCount) || bytesCount === 0) {
+          break;
         }
       }
-    });
-    req.write(subscribeCallString);
-    req.end();
+    }
   }
 
-  reconcile() {
+  reconcile(callback) {
     readFile(this.options.stateFile, (err, buf) => {
       if (!err) {
-        this.tasksState = JSON.parse(buf.toString());
+        try {
+          this.tasksState = JSON.parse(buf.toString());
+        } catch (e) {
+          console.error(`Problem parsing JSON from ${this.options.stateFile}`);
+        }
       }
 
       const oldTasks: mesos.scheduler.Call.Reconcile.Task[] = [];
@@ -208,12 +225,13 @@ class SimpleScheduler {
           reconcile: new Call.Reconcile({
             tasks: oldTasks
           })
-        })
+        }),
+        callback
       );
     });
   }
 
-  handleUpdate(update: mesos.scheduler.Event.IUpdate) {
+  handleUpdate(update: mesos.scheduler.Event.IUpdate, callback) {
     this.tasksState[update.status.task_id.value] = update.status;
     const stateJSON = JSON.stringify(this.tasksState);
     writeFile(
@@ -231,13 +249,14 @@ class SimpleScheduler {
               task_id: update.status.task_id,
               uuid: update.status.uuid
             })
-          })
+          }),
+          callback
         );
       }
     );
   }
 
-  handleOffers(offers: mesos.scheduler.Event.IOffers) {
+  handleOffers(offers: mesos.scheduler.Event.IOffers, callback): void {
     const offerIds = offers.offers.map(o => o.id);
     if (this.commandQueue.length > 0) {
       const cmd = this.commandQueue.shift();
@@ -271,18 +290,24 @@ class SimpleScheduler {
         })
       });
 
-      return this.call(acceptCall);
+      return this.call(acceptCall, callback);
     } else {
       return this.call(
         new Call({
           type: Call.Type.DECLINE,
           decline: new Call.Decline({ offer_ids: offerIds })
-        })
+        }),
+        callback
       );
     }
   }
 
-  call(message: mesos.scheduler.Call) {
+  private mesosRequest(
+    message: mesos.scheduler.Call,
+    headers,
+    onData: (res, body) => void,
+    callback
+  ) {
     message.framework_id = this.frameworkInfo.id;
 
     const options = {
@@ -290,28 +315,36 @@ class SimpleScheduler {
       port: 5050,
       path: ENDPOINT_PATH,
       method: "POST",
-      headers: {
-        "Mesos-Stream-Id": this.mesosStreamId,
-        "Content-Type": "application/json"
-      }
+      headers: { ...headers }
     };
 
     const req = request(options, res => {
       log(`STATUS: ${res.statusCode}`);
       log(`HEADERS: ${JSON.stringify(res.headers)}`);
       res.setEncoding("utf8");
-      res.on("data", body => {
-        if (res.statusCode !== 202) {
-          return log(`Error ${res.statusCode}\n${body}`);
-        }
-      });
+      res.on("data", onData.bind(this, res));
       res.on("end", () => {
         log("No more data in response.");
       });
     });
-
     req.write(JSON.stringify(message.toJSON()));
-    req.end();
+    req.end(callback);
+  }
+
+  call(message: mesos.scheduler.Call, callback) {
+    this.mesosRequest(
+      message,
+      {
+        "Content-Type": "application/json",
+        "Mesos-Stream-Id": this.mesosStreamId
+      },
+      (res, body) => {
+        if (res.statusCode !== 202) {
+          return log(`Error ${res.statusCode}\n${body}`);
+        }
+      },
+      callback
+    );
   }
 
   defaultResources(): mesos.Resource[] {
